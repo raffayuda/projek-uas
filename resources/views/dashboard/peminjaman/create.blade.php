@@ -1,0 +1,244 @@
+@extends('dashbpard.layout.index')
+@section('content')
+    
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Tambah Peminjaman Baru</h2>
+                        <a href="{{ route('peminjaman.index') }}" 
+                           class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                            <i class="fas fa-arrow-left mr-2"></i>Kembali
+                        </a>
+                    </div>
+
+                    <form action="{{ route('peminjaman.store') }}" method="POST" enctype="multipart/form-data" 
+                          class="space-y-6" x-data="{ 
+                              selectedArmada: null,
+                              startDate: null,
+                              endDate: null,
+                              calculateTotal() {
+                                  if (this.selectedArmada && this.startDate && this.endDate) {
+                                      const start = new Date(this.startDate);
+                                      const end = new Date(this.endDate);
+                                      const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+                                      return days * this.selectedArmada.harga;
+                                  }
+                                  return 0;
+                              }
+                          }">
+                        @csrf
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Data Peminjam -->
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-semibold text-gray-700">Data Peminjam</h3>
+                                
+                                <div>
+                                    <label for="nama_peminjam" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                                    <input type="text" name="nama_peminjam" id="nama_peminjam" 
+                                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                           value="{{ old('nama_peminjam') }}" required>
+                                    @error('nama_peminjam')
+                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
+                                    <input type="tel" name="phone" id="phone" 
+                                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                           value="{{ old('phone') }}" required>
+                                    @error('phone')
+                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <label for="ktp_peminjam" class="block text-sm font-medium text-gray-700">Foto KTP</label>
+                                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="ktp_peminjam" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                                    <span>Upload file</span>
+                                                    <input id="ktp_peminjam" name="ktp_peminjam" type="file" class="sr-only" accept="image/*" required>
+                                                </label>
+                                                <p class="pl-1">atau drag and drop</p>
+                                            </div>
+                                            <p class="text-xs text-gray-500">PNG, JPG, JPEG sampai 2MB</p>
+                                        </div>
+                                    </div>
+                                    @error('ktp_peminjam')
+                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Detail Peminjaman -->
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-semibold text-gray-700">Detail Peminjaman</h3>
+
+                                <div>
+                                    <label for="armada_id" class="block text-sm font-medium text-gray-700">Pilih Armada</label>
+                                    <select name="armada_id" id="armada_id" 
+                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                            x-model="selectedArmada"
+                                            required>
+                                        <option value="">Pilih Armada</option>
+                                        @foreach($armadas as $armada)
+                                            <option value="{{ $armada->id }}" 
+                                                    data-harga="{{ $armada->harga }}"
+                                                    {{ old('armada_id') == $armada->id ? 'selected' : '' }}>
+                                                {{ $armada->merk }} - {{ $armada->nopol }} (Rp {{ number_format($armada->harga, 0, ',', '.') }}/hari)
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('armada_id')
+                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="mulai" class="block text-sm font-medium text-gray-700">Tanggal Mulai</label>
+                                        <input type="date" name="mulai" id="mulai" 
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                               x-model="startDate"
+                                               value="{{ old('mulai') }}" required>
+                                        @error('mulai')
+                                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="selesai" class="block text-sm font-medium text-gray-700">Tanggal Selesai</label>
+                                        <input type="date" name="selesai" id="selesai" 
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                               x-model="endDate"
+                                               value="{{ old('selesai') }}" required>
+                                        @error('selesai')
+                                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="pengambilan_id" class="block text-sm font-medium text-gray-700">Lokasi Pengambilan</label>
+                                        <select name="pengambilan_id" id="pengambilan_id" 
+                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                                required>
+                                            <option value="">Pilih Lokasi</option>
+                                            @foreach($lokasis as $lokasi)
+                                                <option value="{{ $lokasi->id }}" {{ old('pengambilan_id') == $lokasi->id ? 'selected' : '' }}>
+                                                    {{ $lokasi->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('pengambilan_id')
+                                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="pengembalian_id" class="block text-sm font-medium text-gray-700">Lokasi Pengembalian</label>
+                                        <select name="pengembalian_id" id="pengembalian_id" 
+                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                                required>
+                                            <option value="">Pilih Lokasi</option>
+                                            @foreach($lokasis as $lokasi)
+                                                <option value="{{ $lokasi->id }}" {{ old('pengembalian_id') == $lokasi->id ? 'selected' : '' }}>
+                                                    {{ $lokasi->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('pengembalian_id')
+                                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="waktu_pengambilan" class="block text-sm font-medium text-gray-700">Waktu Pengambilan</label>
+                                        <input type="time" name="waktu_pengambilan" id="waktu_pengambilan" 
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                               value="{{ old('waktu_pengambilan') }}" required>
+                                        @error('waktu_pengambilan')
+                                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="waktu_pengembalian" class="block text-sm font-medium text-gray-700">Waktu Pengembalian</label>
+                                        <input type="time" name="waktu_pengembalian" id="waktu_pengembalian" 
+                                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                               value="{{ old('waktu_pengembalian') }}" required>
+                                        @error('waktu_pengembalian')
+                                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="keperluan_pinjam" class="block text-sm font-medium text-gray-700">Keperluan Peminjaman</label>
+                                    <textarea name="keperluan_pinjam" id="keperluan_pinjam" rows="3" 
+                                              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                              required>{{ old('keperluan_pinjam') }}</textarea>
+                                    @error('keperluan_pinjam')
+                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Biaya -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-medium text-gray-700">Total Biaya:</span>
+                                <span class="text-2xl font-bold text-blue-600" x-text="'Rp ' + calculateTotal().toLocaleString('id-ID')"></span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="submit" 
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                                <i class="fas fa-save mr-2"></i>Simpan Peminjaman
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @push('scripts')
+    <script>
+        // Preview KTP image before upload
+        document.getElementById('ktp_peminjam').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.createElement('img');
+                    preview.src = e.target.result;
+                    preview.className = 'mt-2 mx-auto h-32 w-auto';
+                    
+                    const container = document.querySelector('.border-dashed');
+                    const existingPreview = container.querySelector('img');
+                    if (existingPreview) {
+                        container.removeChild(existingPreview);
+                    }
+                    container.appendChild(preview);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+    @endpush
+    @endsection
