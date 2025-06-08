@@ -52,16 +52,14 @@ class PeminjamanController extends Controller
             'waktu_pengambilan' => 'required',
             'waktu_pengembalian' => 'required',
             'keperluan_pinjam' => 'required|string',
-        ]);
-
-        if ($request->hasFile('ktp_peminjam')) {
+        ]);        if ($request->hasFile('ktp_peminjam')) {
             $ktpPath = $request->file('ktp_peminjam')->store('uploads/ktp', 'public');
             $validated['ktp_peminjam'] = $ktpPath;
         }
 
         $start = Carbon::parse($validated['mulai'])->startOfDay();
         $end = Carbon::parse($validated['selesai'])->startOfDay();
-        $days = $start->diffInDays($end) + 1;
+        $days = $start->diffInDays($end);
         if ($days < 1) $days = 1;
         $armada = Armada::findOrFail($validated['armada_id']);
         $validated['biaya'] = $days * $armada->harga;
@@ -123,11 +121,9 @@ class PeminjamanController extends Controller
             
             $ktpPath = $request->file('ktp_peminjam')->store('uploads/ktp', 'public');
             $validated['ktp_peminjam'] = $ktpPath;
-        }
-
-        $start = Carbon::parse($validated['mulai'])->startOfDay();
+        }        $start = Carbon::parse($validated['mulai'])->startOfDay();
         $end = Carbon::parse($validated['selesai'])->startOfDay();
-        $days = $start->diffInDays($end) + 1;
+        $days = $start->diffInDays($end);
         if ($days < 1) $days = 1;
         $armada = Armada::findOrFail($validated['armada_id']);
         $validated['biaya'] = $days * $armada->harga;

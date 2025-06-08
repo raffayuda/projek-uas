@@ -4,7 +4,11 @@ use App\Http\Controllers\ArmadaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MyBookingController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ProfileController;
+use App\Models\Lokasi;
 
 Route::get('/', function () {
     return view('home');
@@ -14,7 +18,7 @@ Route::get('/cars', function () {
 });
 Route::get('/booking', [App\Http\Controllers\BookingController::class, 'create']);
 Route::get('/location', function () {
-    return view('location');
+    return view('location', ['locations' => Lokasi::all()]);
 });
 Route::get('/about', function () {
     return view('about');
@@ -41,10 +45,24 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('peminjaman', PeminjamanController::class);
     Route::get('/armada/{armada}/check-availability', [PeminjamanController::class, 'checkAvailability'])
         ->name('armada.check-availability');
+
+    // Pembayaran Routes
+    Route::resource('pembayaran', PembayaranController::class);
+
+    // Location Routes
+    Route::resource('lokasi', LocationController::class);
+
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard.home');
-})->middleware('auth');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->middleware('auth');
+
+// Profile Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
+    Route::delete('/profile/avatar', [App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
+});
 
 Route::resource('armada', ArmadaController::class);

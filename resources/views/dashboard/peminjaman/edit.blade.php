@@ -12,10 +12,9 @@
                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                             <i class="fas fa-arrow-left mr-2"></i>Kembali
                         </a>
-                    </div>
-
-                    <form action="{{ route('peminjaman.update', $peminjaman) }}" method="POST" enctype="multipart/form-data" 
+                    </div>                    <form action="{{ route('peminjaman.update', $peminjaman) }}" method="POST" enctype="multipart/form-data" 
                           class="space-y-6" x-data="{ 
+                              selectedArmadaId: '{{ $peminjaman->armada_id }}',
                               selectedArmada: {
                                   id: {{ $peminjaman->armada_id }},
                                   harga: {{ $peminjaman->armada->harga }}
@@ -23,15 +22,15 @@
                               startDate: '{{ $peminjaman->mulai->format('Y-m-d') }}',
                               endDate: '{{ $peminjaman->selesai->format('Y-m-d') }}',
                               calculateTotal() {
-                                  if (this.selectedArmada && this.startDate && this.endDate) {
+                                  if (this.selectedArmada.harga && this.startDate && this.endDate) {
                                       const start = new Date(this.startDate);
                                       const end = new Date(this.endDate);
                                       // Set time to midnight to ensure accurate day calculation
                                       start.setHours(0, 0, 0, 0);
                                       end.setHours(0, 0, 0, 0);
-                                      // Calculate days without adding 1 to get correct rental duration
+                                      // Calculate days - same logic as booking page
                                       const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
-                                      return days * this.selectedArmada.harga;
+                                      return Math.max(1, days) * this.selectedArmada.harga;
                                   }
                                   return 0;
                               }
@@ -62,48 +61,30 @@
                                     @error('phone')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                     @enderror
-                                </div>
-
-                                <div>
+                                </div>                                <div>
                                     <label for="ktp_peminjam" class="block text-sm font-medium text-gray-700">Foto KTP</label>
-                                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md" x-data="{ showPreview: true }">
-                                        @if($peminjaman->ktp_peminjam)
-                                            <div class="text-center">
-                                                <img src="{{ asset('storage/uploads/ktp/' . $peminjaman->ktp_peminjam) }}" 
-                                                     alt="KTP Preview" 
-                                                     class="h-32 w-auto mx-auto mb-4"
-                                                     x-show="showPreview">
-                                                <div class="flex justify-center space-x-2">
-                                                    <button type="button" 
-                                                            @click="showPreview = false"
-                                                            class="text-sm text-red-600 hover:text-red-800">
-                                                        <i class="fas fa-trash mr-1"></i>Hapus KTP
-                                                    </button>
-                                                    <label class="text-sm text-blue-600 hover:text-blue-800 cursor-pointer">
-                                                        <i class="fas fa-upload mr-1"></i>Ganti KTP
-                                                        <input type="file" 
-                                                               name="ktp_peminjam" 
-                                                               class="hidden" 
-                                                               accept="image/*"
-                                                               @change="showPreview = false">
-                                                    </label>
-                                                </div>
+                                    @if($peminjaman->ktp_peminjam)
+                                        <div class="mt-1 mb-2">
+                                            <img src="{{ Storage::url($peminjaman->ktp_peminjam) }}" 
+                                                 alt="KTP Saat Ini" 
+                                                 class="h-32 w-auto border border-gray-300 rounded-md">
+                                            <p class="text-xs text-gray-500 mt-1">KTP saat ini (kosongkan jika tidak ingin mengubah)</p>
+                                        </div>
+                                    @endif
+                                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+                                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="ktp_peminjam" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                                    <span>{{ $peminjaman->ktp_peminjam ? 'Ganti file' : 'Upload file' }}</span>
+                                                    <input id="ktp_peminjam" name="ktp_peminjam" type="file" class="sr-only" accept="image/*">
+                                                </label>
+                                                <p class="pl-1">atau drag and drop</p>
                                             </div>
-                                        @else
-                                            <div class="space-y-1 text-center">
-                                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                                <div class="flex text-sm text-gray-600">
-                                                    <label for="ktp_peminjam" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                                        <span>Upload file</span>
-                                                        <input id="ktp_peminjam" name="ktp_peminjam" type="file" class="sr-only" accept="image/*">
-                                                    </label>
-                                                    <p class="pl-1">atau drag and drop</p>
-                                                </div>
-                                                <p class="text-xs text-gray-500">PNG, JPG, JPEG sampai 2MB</p>
-                                            </div>
-                                        @endif
+                                            <p class="text-xs text-gray-500">PNG, JPG, JPEG sampai 2MB</p>
+                                        </div>
                                     </div>
                                     @error('ktp_peminjam')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -113,14 +94,12 @@
 
                             <!-- Detail Peminjaman -->
                             <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-gray-700">Detail Peminjaman</h3>
-
-                                <div>
+                                <h3 class="text-lg font-semibold text-gray-700">Detail Peminjaman</h3>                                <div>
                                     <label for="armada_id" class="block text-sm font-medium text-gray-700">Pilih Armada</label>
                                     <select name="armada_id" id="armada_id" 
                                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                            x-model="selectedArmada.id"
-                                            @change="selectedArmada.harga = $event.target.options[$event.target.selectedIndex].dataset.harga"
+                                            x-model="selectedArmadaId"
+                                            @change="selectedArmada = { id: $event.target.value, harga: parseInt($event.target.options[$event.target.selectedIndex].dataset.harga || 0) }"
                                             required>
                                         <option value="">Pilih Armada</option>
                                         @foreach($armadas as $armada)
@@ -245,15 +224,13 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Total Biaya -->
+                        </div>                        <!-- Total Biaya -->
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <div class="flex justify-between items-center">
                                 <span class="text-lg font-medium text-gray-700">Total Biaya:</span>
                                 <div class="text-right">
                                     <span class="text-2xl font-bold text-blue-600" x-text="'Rp ' + calculateTotal().toLocaleString('id-ID')"></span>
-                                    <div class="text-sm text-gray-500" x-text="'(' + (Math.ceil((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24))) + ' hari)'"></div>
+                                    <div class="text-sm text-gray-500" x-text="'(' + Math.max(1, Math.ceil((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24))) + ' hari)'"></div>
                                 </div>
                             </div>
                         </div>
@@ -268,57 +245,4 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    @push('scripts')
-    <script>
-        // Preview KTP image before upload
-        document.querySelectorAll('input[type="file"]').forEach(input => {
-            input.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const container = this.closest('.border-dashed');
-                        const preview = document.createElement('img');
-                        preview.src = e.target.result;
-                        preview.className = 'h-32 w-auto mx-auto mb-4';
-                        
-                        // Remove existing preview if any
-                        const existingPreview = container.querySelector('img');
-                        if (existingPreview) {
-                            existingPreview.remove();
-                        }
-
-                        // Insert new preview before the buttons
-                        const buttons = container.querySelector('.flex.justify-center');
-                        if (buttons) {
-                            container.insertBefore(preview, buttons);
-                        } else {
-                            container.appendChild(preview);
-                        }
-                    }.bind(this);
-                    reader.readAsDataURL(file);
-                }
-            });
-        });
-
-        // Handle KTP deletion
-        document.querySelectorAll('button[type="button"]').forEach(button => {
-            button.addEventListener('click', function() {
-                const container = this.closest('.border-dashed');
-                const preview = container.querySelector('img');
-                if (preview) {
-                    preview.remove();
-                }
-                // Add a hidden input to indicate KTP deletion
-                const deleteInput = document.createElement('input');
-                deleteInput.type = 'hidden';
-                deleteInput.name = 'delete_ktp';
-                deleteInput.value = '1';
-                container.appendChild(deleteInput);
-            });
-        });
-    </script>
-    @endpush
-    @endsection
+    </div>    @endsection

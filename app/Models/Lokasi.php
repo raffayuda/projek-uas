@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Lokasi extends Model
 {
     protected $table = 'lokasi';
+    public $timestamps = false;
     
-    protected $guarded = [
-        'id'
+    protected $fillable = [
+        'nama',
+        'alamat',
+        'koordinat',
+        'image'
     ];
 
     public function peminjaman()

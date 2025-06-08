@@ -1,4 +1,4 @@
-@extends('dashbpard.layout.index')
+@extends('dashboard.layout.index')
 @section('content')
     
 
@@ -12,19 +12,22 @@
                            class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
                             <i class="fas fa-arrow-left mr-2"></i>Kembali
                         </a>
-                    </div>
-
-                    <form action="{{ route('peminjaman.store') }}" method="POST" enctype="multipart/form-data" 
+                    </div>                    <form action="{{ route('peminjaman.store') }}" method="POST" enctype="multipart/form-data" 
                           class="space-y-6" x-data="{ 
-                              selectedArmada: null,
+                              selectedArmadaId: '',
+                              selectedArmada: { id: null, harga: 0 },
                               startDate: null,
                               endDate: null,
                               calculateTotal() {
-                                  if (this.selectedArmada && this.startDate && this.endDate) {
+                                  if (this.selectedArmada.harga && this.startDate && this.endDate) {
                                       const start = new Date(this.startDate);
                                       const end = new Date(this.endDate);
-                                      const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
-                                      return days * this.selectedArmada.harga;
+                                      // Set time to midnight to ensure accurate day calculation
+                                      start.setHours(0, 0, 0, 0);
+                                      end.setHours(0, 0, 0, 0);
+                                      // Calculate days - same logic as booking page
+                                      const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+                                      return Math.max(1, days) * this.selectedArmada.harga;
                                   }
                                   return 0;
                               }
@@ -81,13 +84,12 @@
 
                             <!-- Detail Peminjaman -->
                             <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-gray-700">Detail Peminjaman</h3>
-
-                                <div>
+                                <h3 class="text-lg font-semibold text-gray-700">Detail Peminjaman</h3>                                <div>
                                     <label for="armada_id" class="block text-sm font-medium text-gray-700">Pilih Armada</label>
                                     <select name="armada_id" id="armada_id" 
                                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                                            x-model="selectedArmada"
+                                            x-model="selectedArmadaId"
+                                            @change="selectedArmada = { id: $event.target.value, harga: parseInt($event.target.options[$event.target.selectedIndex].dataset.harga || 0) }"
                                             required>
                                         <option value="">Pilih Armada</option>
                                         @foreach($armadas as $armada)
@@ -195,13 +197,14 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Total Biaya -->
+                        </div>                        <!-- Total Biaya -->
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <div class="flex justify-between items-center">
                                 <span class="text-lg font-medium text-gray-700">Total Biaya:</span>
-                                <span class="text-2xl font-bold text-blue-600" x-text="'Rp ' + calculateTotal().toLocaleString('id-ID')"></span>
+                                <div class="text-right">
+                                    <span class="text-2xl font-bold text-blue-600" x-text="'Rp ' + calculateTotal().toLocaleString('id-ID')"></span>
+                                    <div class="text-sm text-gray-500" x-text="startDate && endDate ? '(' + Math.max(1, Math.ceil((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24))) + ' hari)' : ''"></div>
+                                </div>
                             </div>
                         </div>
 
