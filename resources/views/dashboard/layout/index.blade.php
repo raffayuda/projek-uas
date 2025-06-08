@@ -62,7 +62,7 @@
             @include('dashboard.partials.navbar')
             
             <!-- Main Content Area -->
-            <main class="p-6">
+            <main class="p-6 bg-[#EEFCF9]">
                 @yield('content')
             </main>
         </div>

@@ -6,6 +6,7 @@ use App\Models\Armada;
 use App\Models\JenisKendaraan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ArmadaController extends Controller
 {
@@ -52,7 +53,20 @@ class ArmadaController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            $validated['gambar'] = $request->file('gambar')->store('armada-images', 'public');
+            $file = $request->file('gambar');
+            $filename = time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
+            
+            // Create directory if it doesn't exist
+            $uploadPath = storage_path('app/public/armada-images');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            
+            // Store file in storage
+            $file->move($uploadPath, $filename);
+            
+            // Save only the filename to database
+            $validated['gambar'] = $filename;
         }
 
         Armada::create($validated);
@@ -97,9 +111,26 @@ class ArmadaController extends Controller
 
         if ($request->hasFile('gambar')) {
             if ($armada->gambar) {
-                Storage::disk('public')->delete($armada->gambar);
+                $gambarPath = 'armada-images/' . $armada->gambar;
+                if (Storage::disk('public')->exists($gambarPath)) {
+                    Storage::disk('public')->delete($gambarPath);
+                }
             }
-            $validated['gambar'] = $request->file('gambar')->store('armada-images', 'public');
+            
+            $file = $request->file('gambar');
+            $filename = time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
+            
+            // Create directory if it doesn't exist
+            $uploadPath = storage_path('app/public/armada-images');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            
+            // Store file in storage
+            $file->move($uploadPath, $filename);
+            
+            // Save only the filename to database
+            $validated['gambar'] = $filename;
         }
 
         $armada->update($validated);
@@ -113,7 +144,10 @@ class ArmadaController extends Controller
     public function destroy(Armada $armada)
     {
         if ($armada->gambar) {
-            Storage::disk('public')->delete($armada->gambar);
+            $gambarPath = 'armada-images/' . $armada->gambar;
+            if (Storage::disk('public')->exists($gambarPath)) {
+                Storage::disk('public')->delete($gambarPath);
+            }
         }
 
         $armada->delete();

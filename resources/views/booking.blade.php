@@ -31,33 +31,33 @@
 <div class="booking-header">
     <div class="hero-pattern"></div>
     <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-         alt="Luxury Car" 
+         alt="Mobil Mewah" 
          class="hero-car">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
         <div class="hero-content text-center">
             <div class="hero-badge" data-aos="fade-up">
                 <i class="fas fa-star"></i>
-                <span class="text-white">Premium Car Rental Service</span>
+                <span class="text-white">Layanan Rental Mobil Premium</span>
             </div>
             <h1 class="text-5xl font-extrabold text-white sm:text-6xl lg:text-7xl mb-8" data-aos="fade-up" data-aos-delay="100">
-                Book Your <span class="gradient-text">Dream Car</span>
+                Pesan <span class="gradient-text">Mobil Impian</span> Anda
             </h1>
             <p class="text-2xl text-gray-200 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
-                Experience luxury and comfort with our extensive fleet of premium vehicles. 
-                Choose your perfect ride and start your journey today.
+                Rasakan kemewahan dan kenyamanan dengan armada kendaraan premium kami. 
+                Pilih mobil yang sempurna dan mulai perjalanan Anda hari ini.
             </p>
             <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
                 <div class="stat-card">
                     <div class="stat-number">500+</div>
-                    <div class="stat-label">Happy Customers</div>
+                    <div class="stat-label">Pelanggan Puas</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">50+</div>
-                    <div class="stat-label">Premium Cars</div>
+                    <div class="stat-label">Mobil Premium</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">24/7</div>
-                    <div class="stat-label">Customer Support</div>
+                    <div class="stat-label">Layanan Pelanggan</div>
                 </div>
             </div>
         </div>
@@ -240,9 +240,8 @@
                     <div @click="selectedCar = car.id" 
                          :class="{'ring-2 ring-blue-500 scale-[1.02]': selectedCar == car.id}"
                          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-100">
-                        <div class="relative h-48 bg-gray-100">
-                            <template x-if="car.gambar">
-                                <img :src="`/storage/${car.gambar}`" 
+                        <div class="relative h-48 bg-gray-100">                            <template x-if="car.gambar">
+                                <img :src="`/storage/armada-images/${car.gambar}`" 
                                      class="w-full h-full object-cover"
                                      :alt="car.merk">
                             </template>
@@ -410,9 +409,8 @@
                         <h3 class="text-lg font-bold text-gray-900 mb-4">Ringkasan Pesanan</h3>
                         
                         <template x-if="selectedCar">
-                            <div class="flex items-start mb-6 pb-6 border-b border-gray-200">
-                                <template x-if="cars.find(c => c.id == selectedCar)?.gambar">
-                                    <img :src="`/storage/${cars.find(c => c.id == selectedCar)?.gambar}`" 
+                            <div class="flex items-start mb-6 pb-6 border-b border-gray-200">                                <template x-if="cars.find(c => c.id == selectedCar)?.gambar">
+                                    <img :src="`/storage/armada-images/${cars.find(c => c.id == selectedCar)?.gambar}`" 
                                          class="w-20 h-16 object-cover rounded-lg mr-4">
                                 </template>
                                 <template x-if="!cars.find(c => c.id == selectedCar)?.gambar">
@@ -689,11 +687,10 @@
                 </button>
             </div>
         </div>
-    </div>
-    
-    <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center animate-bounce-in" data-aos="zoom-in">
+    </div>    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center animate-bounce-in" data-aos="zoom-in">
             <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i class="fas fa-check-circle text-green-500 text-4xl"></i>
             </div>
@@ -707,6 +704,7 @@
             </button>
         </div>
     </div>
+</div>
 </div>
 
 <script>

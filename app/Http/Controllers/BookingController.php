@@ -14,17 +14,51 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class BookingController extends Controller
-{
-    
-    public function create()
+{    public function create(Request $request)
     {
-        $cars = Armada::all();
+        // Get only available cars (not currently booked or with active rental status)
+        $cars = Armada::whereDoesntHave('peminjaman', function($query) {
+            $query->whereIn('status_pinjam', ['Pending', 'Dipinjam']);
+        })->get();
+        
+        // Get selected car if car_id is provided
+        $selectedCar = null;
+        if ($request->has('car_id')) {
+            $selectedCar = Armada::find($request->car_id);
+        }
+        
         $pickupLocations = Lokasi::all();
         $returnLocations = Lokasi::all();
-        return view('booking', compact('cars', 'pickupLocations', 'returnLocations'));
+        return view('booking', compact('cars', 'pickupLocations', 'returnLocations', 'selectedCar'));
     }
 
-    public function store(Request $request)
+    /**
+     * Check car availability for specific date range
+     */
+    public function checkAvailability(Request $request)
+    {
+        $request->validate([
+            'armada_id' => 'required|exists:armada,id',
+            'mulai' => 'required|date',
+            'selesai' => 'required|date|after_or_equal:mulai'
+        ]);
+
+        $isAvailable = !Peminjaman::where('armada_id', $request->armada_id)
+            ->whereIn('status_pinjam', ['Pending', 'Dipinjam'])
+            ->where(function($query) use ($request) {
+                $query->whereBetween('mulai', [$request->mulai, $request->selesai])
+                      ->orWhereBetween('selesai', [$request->mulai, $request->selesai])
+                      ->orWhere(function($subQuery) use ($request) {
+                          $subQuery->where('mulai', '<=', $request->mulai)
+                                   ->where('selesai', '>=', $request->selesai);
+                      });
+            })->exists();
+
+        return response()->json([
+            'available' => $isAvailable,
+            'message' => $isAvailable ? 'Mobil tersedia untuk tanggal yang dipilih' : 'Mobil tidak tersedia untuk tanggal yang dipilih'
+        ]);
+    }    public function store(Request $request)
     {
         try {
             $validated = $request->validate([
@@ -65,9 +99,31 @@ class BookingController extends Controller
                 'pengembalian_id.exists' => 'Lokasi pengembalian tidak valid'
             ]);
 
+            // Check car availability for the requested dates
+            $startDate = $validated['mulai'] . ' ' . $validated['waktu_pengambilan'];
+            $endDate = $validated['selesai'] . ' ' . $validated['waktu_pengembalian'];
+            
+            $conflictingBooking = Peminjaman::where('armada_id', $validated['armada_id'])
+                ->whereIn('status_pinjam', ['Pending', 'Dipinjam'])
+                ->where(function($query) use ($startDate, $endDate) {
+                    $query->whereBetween('mulai', [$startDate, $endDate])
+                          ->orWhereBetween('selesai', [$startDate, $endDate])
+                          ->orWhere(function($subQuery) use ($startDate, $endDate) {
+                              $subQuery->where('mulai', '<=', $startDate)
+                                       ->where('selesai', '>=', $endDate);
+                          });
+                })->exists();
+
+            if ($conflictingBooking) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Mobil tidak tersedia untuk tanggal yang dipilih. Silakan pilih mobil lain atau ubah tanggal booking.'
+                ], 422);
+            }
+
             // Combine date and time for mulai and selesai
-            $validated['mulai'] = $validated['mulai'] . ' ' . $validated['waktu_pengambilan'];
-            $validated['selesai'] = $validated['selesai'] . ' ' . $validated['waktu_pengembalian'];
+            $validated['mulai'] = $startDate;
+            $validated['selesai'] = $endDate;
 
             // Upload KTP
             if ($request->hasFile('ktp_peminjam')) {

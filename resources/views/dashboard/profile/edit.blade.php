@@ -12,10 +12,6 @@
                         <h1 class="text-4xl font-bold text-white mb-2">Edit Profile</h1>
                         <p class="text-indigo-100">Update your personal information and settings</p>
                     </div>
-                    <a href="{{ route('profile.show') }}" 
-                       class="inline-flex items-center px-6 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 rounded-xl text-white font-medium transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-arrow-left mr-2"></i>Back to Profile
-                    </a>
                 </div>
             </div>
         </div>

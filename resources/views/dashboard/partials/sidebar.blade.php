@@ -46,14 +46,79 @@
           <i class="fas fa-credit-card w-5 h-5 {{ request()->is('pembayaran*') ? 'text-white' : 'text-blue-200 group-hover:text-white' }} transition-colors"></i>
           <span class="ml-3 font-medium">Pembayaran</span>
           <span class="ml-auto bg-white/20 px-2 py-0.5 rounded-lg text-xs">{{ $pembayaranCount > 0 ? $pembayaranCount : 'New' }}</span>
-       </a>
-
-       <a href="/lokasi" 
+       </a>       <a href="/lokasi" 
          class="flex items-center px-4 py-3 text-white rounded-xl backdrop-blur-sm border transition-all duration-200 {{ request()->is('lokasi*') ? 'bg-white/10 border-white/10' : 'hover:bg-white/10 border-transparent hover:border-white/10' }} group">
           <i class="fas fa-map-marker-alt w-5 h-5 {{ request()->is('lokasi*') ? 'text-white' : 'text-blue-200 group-hover:text-white' }} transition-colors"></i>
           <span class="ml-3 font-medium">Lokasi</span>
           <span class="ml-auto bg-white/20 px-2 py-0.5 rounded-lg text-xs">{{ $lokasiCount }} Spots</span>
        </a>
+
+       <!-- Divider -->
+       <div class="px-3 py-4">
+          <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">Analytics</span>
+       </div>
+      
+       <!-- Modern Reports Menu with Dropdown -->
+       <div x-data="{ reportsOpen: false }" class="relative">
+          <button @click="reportsOpen = !reportsOpen" 
+                  class="w-full flex items-center px-4 py-3 text-white rounded-xl backdrop-blur-sm border transition-all duration-200 {{ request()->is('laporan*') ? 'bg-white/10 border-white/10' : 'hover:bg-white/10 border-transparent hover:border-white/10' }} group">
+             <div class="flex items-center flex-1">
+                <div class="relative">
+                   <i class="fas fa-chart-bar w-5 h-5 {{ request()->is('laporan*') ? 'text-white' : 'text-blue-200 group-hover:text-white' }} transition-colors"></i>
+                   <div class="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse shadow-lg"></div>
+                </div>
+                <span class="ml-3 font-medium">Laporan</span>
+             </div>
+             <div class="flex items-center space-x-2">
+                <span class="bg-gradient-to-r from-green-400 to-emerald-500 px-2 py-0.5 rounded-lg text-xs font-semibold text-white shadow-sm">NEW</span>
+                <i class="fas fa-chevron-down text-sm transition-transform duration-200" :class="{ 'rotate-180': reportsOpen }"></i>
+             </div>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div x-show="reportsOpen" 
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 transform -translate-y-2"
+               x-transition:enter-end="opacity-100 transform translate-y-0"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100 transform translate-y-0"
+               x-transition:leave-end="opacity-0 transform -translate-y-2"
+               class="mt-2 ml-4 space-y-1">
+             
+             <a href="/laporan" 
+                class="flex items-center px-4 py-2 text-white rounded-lg backdrop-blur-sm border transition-all duration-200 {{ request()->is('laporan') && !request()->is('laporan/detail') ? 'bg-white/20 border-white/20' : 'hover:bg-white/10 border-transparent hover:border-white/10' }} group">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mr-3 shadow-sm">
+                   <i class="fas fa-tachometer-alt text-xs text-white"></i>
+                </div>
+                <div>
+                   <p class="font-medium text-sm">Dashboard Analytics</p>
+                   <p class="text-xs text-blue-200">Overview & Statistics</p>
+                </div>
+             </a>
+
+             <a href="/laporan/detail" 
+                class="flex items-center px-4 py-2 text-white rounded-lg backdrop-blur-sm border transition-all duration-200 {{ request()->is('laporan/detail*') ? 'bg-white/20 border-white/20' : 'hover:bg-white/10 border-transparent hover:border-white/10' }} group">
+                <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-sm">
+                   <i class="fas fa-table text-xs text-white"></i>
+                </div>
+                <div>
+                   <p class="font-medium text-sm">Detail Reports</p>
+                   <p class="text-xs text-blue-200">Filtered Data View</p>
+                </div>
+             </a>
+
+             <a href="/laporan/export-pdf" 
+                class="flex items-center px-4 py-2 text-white rounded-lg backdrop-blur-sm border transition-all duration-200 hover:bg-white/10 border-transparent hover:border-white/10 group">
+                <div class="w-8 h-8 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center mr-3 shadow-sm">
+                   <i class="fas fa-file-pdf text-xs text-white"></i>
+                </div>
+                <div>
+                   <p class="font-medium text-sm">Export PDF</p>
+                   <p class="text-xs text-blue-200">Download Reports</p>
+                </div>
+             </a>
+          </div>
+       </div>
     </nav>
 
     <!-- User Profile Section -->

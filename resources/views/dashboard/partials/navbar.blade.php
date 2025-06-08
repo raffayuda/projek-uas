@@ -1,4 +1,4 @@
-<header class="bg-white shadow-sm sticky top-0 z-10">
+<header class="bg-white shadow-sm sticky top-0 z-10 z-50">
     <div class="flex items-center justify-between px-6 py-4">
         <div class="flex items-center">
             <button @click="toggleSidebar()" class="text-gray-500 focus:outline-none lg:hidden mr-4">

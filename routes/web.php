@@ -13,10 +13,8 @@ use App\Models\Lokasi;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/cars', function () {
-    return view('cars');
-});
-Route::get('/booking', [App\Http\Controllers\BookingController::class, 'create']);
+Route::get('/cars', [App\Http\Controllers\CarsController::class, 'index'])->name('cars.index');
+Route::get('/booking', [App\Http\Controllers\BookingController::class, 'create'])->name('booking.create');
 Route::get('/location', function () {
     return view('location', ['locations' => Lokasi::all()]);
 });
@@ -27,6 +25,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 Route::post('/contact/send', [App\Http\Controllers\ContactController::class, 'send']);
+Route::post('/booking/check-availability', [App\Http\Controllers\BookingController::class, 'checkAvailability']);
 Route::post('/booking/store', [App\Http\Controllers\BookingController::class, 'store'])->middleware('auth');
 
 // Authentication Routes
@@ -51,6 +50,13 @@ Route::middleware(['auth'])->group(function () {
 
     // Location Routes
     Route::resource('lokasi', LocationController::class);
+
+    // Laporan Routes
+    Route::prefix('laporan')->name('laporan.')->group(function () {
+        Route::get('/', [App\Http\Controllers\LaporanController::class, 'index'])->name('index');
+        Route::get('/detail', [App\Http\Controllers\LaporanController::class, 'detail'])->name('detail');
+        Route::get('/export-pdf', [App\Http\Controllers\LaporanController::class, 'exportPdf'])->name('export.pdf');
+    });
 
 });
 

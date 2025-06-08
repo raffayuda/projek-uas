@@ -27,15 +27,19 @@ class AppServiceProvider extends ServiceProvider
         // Share data with sidebar view
         View::composer('dashboard.partials.sidebar', function ($view) {
             $armadaCount = Armada::count();
-            $activePeminjamanCount = Peminjaman::where('status_pinjam', 'Pending')->count();
+            $activePeminjamanCount = Peminjaman::whereIn('status_pinjam', ['Pending', 'Approved'])->count();
             $pembayaranCount = Pembayaran::count();
+            $pendingPembayaranCount = Peminjaman::whereDoesntHave('pembayaran')->count();
             $lokasiCount = Lokasi::count();
+            $totalPendapatan = Peminjaman::where('status_pinjam', 'Finished')->sum('biaya');
             
             $view->with([
                 'armadaCount' => $armadaCount,
                 'activePeminjamanCount' => $activePeminjamanCount,
                 'pembayaranCount' => $pembayaranCount,
+                'pendingPembayaranCount' => $pendingPembayaranCount,
                 'lokasiCount' => $lokasiCount,
+                'totalPendapatan' => $totalPendapatan,
             ]);
         });
     }

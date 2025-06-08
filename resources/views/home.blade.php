@@ -30,33 +30,33 @@
     <div class="booking-header">
         <div class="hero-pattern"></div>
         <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-             alt="Luxury Car" 
+             alt="Mobil Mewah" 
              class="hero-car">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
             <div class="hero-content text-center">
                 <div class="hero-badge" data-aos="fade-up">
                     <i class="fas fa-home"></i>
-                    <span class="text-white">Welcome to DriveEase</span>
+                    <span class="text-white">Selamat Datang di DriveEase</span>
                 </div>
                 <h1 class="text-5xl font-extrabold text-white sm:text-6xl lg:text-7xl mb-8" data-aos="fade-up" data-aos-delay="100">
-                    Welcome to <span class="gradient-text">DriveEase</span>
+                    Selamat Datang di <span class="gradient-text">DriveEase</span>
                 </h1>
                 <p class="text-2xl text-gray-200 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
-                    Your trusted partner for premium car rentals in Indonesia.
-                    Experience comfort and luxury on every journey.
+                    Mitra terpercaya untuk penyewaan mobil premium di Indonesia.
+                    Rasakan kenyamanan dan kemewahan di setiap perjalanan.
                 </p>
                 <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
                     <div class="stat-card">
                         <div class="stat-number">13+</div>
-                        <div class="stat-label">Years Experience</div>
+                        <div class="stat-label">Tahun Berpengalaman</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">20K+</div>
-                        <div class="stat-label">Happy Clients</div>
+                        <div class="stat-label">Klien Puas</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">100%</div>
-                        <div class="stat-label">Satisfaction</div>
+                        <div class="stat-label">Kepuasan</div>
                     </div>
                 </div>
             </div>
@@ -71,12 +71,12 @@
 <div class="py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16" data-aos="fade-up">
-            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">WHY CHOOSE US</span>
+            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">MENGAPA MEMILIH KAMI</span>
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Premium <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Car Rental</span> Experience
+                Pengalaman <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Sewa Mobil</span> Premium
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                We redefine mobility with exceptional service, cutting-edge technology, and an unparalleled fleet
+                Kami mendefinisikan ulang mobilitas dengan layanan luar biasa, teknologi canggih, dan armada yang tak tertandingi
             </p>
         </div>
         
@@ -88,13 +88,13 @@
                     <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition duration-500">
                         <i class="fas fa-car text-3xl text-blue-600 group-hover:text-white transition duration-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-white transition duration-500">Diverse Fleet</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-white transition duration-500">Armada Beragam</h3>
                     <p class="text-gray-600 leading-relaxed group-hover:text-white/80 transition duration-500">
-                        Choose from 150+ meticulously maintained vehicles, from luxury sedans to family SUVs and high-performance sports cars.
+                        Pilih dari 150+ kendaraan yang terawat dengan cermat, mulai dari sedan mewah hingga SUV keluarga dan mobil sport performa tinggi.
                     </p>
                     <div class="mt-6">
                         <span class="inline-flex items-center text-blue-600 group-hover:text-white font-medium transition duration-500">
-                            Explore Fleet
+                            Jelajahi Armada
                             <i class="fas fa-arrow-right ml-2"></i>
                         </span>
                     </div>
@@ -108,13 +108,13 @@
                     <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition duration-500">
                         <i class="fas fa-shield-alt text-3xl text-blue-600 group-hover:text-white transition duration-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-white transition duration-500">Total Protection</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-white transition duration-500">Perlindungan Menyeluruh</h3>
                     <p class="text-gray-600 leading-relaxed group-hover:text-white/80 transition duration-500">
-                        Comprehensive coverage with zero deductible options and 24/7 roadside assistance for complete peace of mind.
+                        Perlindungan komprehensif dengan opsi tanpa deductible dan bantuan darurat 24/7 untuk ketenangan pikiran total.
                     </p>
                     <div class="mt-6">
                         <span class="inline-flex items-center text-blue-600 group-hover:text-white font-medium transition duration-500">
-                            Insurance Details
+                            Detail Asuransi
                             <i class="fas fa-arrow-right ml-2"></i>
                         </span>
                     </div>
@@ -128,13 +128,13 @@
                     <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/20 transition duration-500">
                         <i class="fas fa-headset text-3xl text-blue-600 group-hover:text-white transition duration-500"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-white transition duration-500">Concierge Service</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-white transition duration-500">Layanan Concierge</h3>
                     <p class="text-gray-600 leading-relaxed group-hover:text-white/80 transition duration-500">
-                        Your personal mobility assistant available 24/7 with average response time under 3 minutes.
+                        Asisten mobilitas pribadi Anda tersedia 24/7 dengan waktu respons rata-rata di bawah 3 menit.
                     </p>
                     <div class="mt-6">
                         <span class="inline-flex items-center text-blue-600 group-hover:text-white font-medium transition duration-500">
-                            Contact Support
+                            Hubungi Dukungan
                             <i class="fas fa-arrow-right ml-2"></i>
                         </span>
                     </div>
@@ -148,12 +148,12 @@
 <div class="py-20 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16" data-aos="fade-up">
-            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">OUR FLEET</span>
+            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">ARMADA KAMI</span>
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Featured <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Vehicles</span>
+                Kendaraan <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Unggulan</span>
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Hand-selected luxury and performance vehicles for every occasion
+                Kendaraan mewah dan performa terpilih untuk setiap kesempatan
             </p>
         </div>
         
@@ -166,7 +166,7 @@
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
-                        Sports
+                        Sport
                     </div>
                     <div class="absolute bottom-4 left-4 flex items-center">
                         <div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium shadow-sm">
@@ -177,9 +177,9 @@
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-xl font-bold text-gray-900">Chevrolet Camaro</h3>
-                        <span class="text-blue-600 font-bold">$99<span class="text-gray-400 text-sm font-normal">/day</span></span>
+                        <span class="text-blue-600 font-bold">Rp1.500K<span class="text-gray-400 text-sm font-normal">/hari</span></span>
                     </div>
-                    <p class="text-gray-500 mb-4">Iconic American sports car with thrilling performance</p>
+                    <p class="text-gray-500 mb-4">Mobil sport Amerika ikonik dengan performa mendebarkan</p>
                     
                     <div class="grid grid-cols-3 gap-4 mb-6">
                         <div class="text-center">
@@ -188,16 +188,16 @@
                         </div>
                         <div class="text-center">
                             <div class="text-gray-400 mb-1"><i class="fas fa-cogs"></i></div>
-                            <span class="text-sm">Auto</span>
+                            <span class="text-sm">Otomatis</span>
                         </div>
                         <div class="text-center">
                             <div class="text-gray-400 mb-1"><i class="fas fa-gas-pump"></i></div>
-                            <span class="text-sm">8.5L/100km</span>
+                            <span class="text-sm">8,5L/100km</span>
                         </div>
                     </div>
                     
                     <button class="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition duration-300 group">
-                        <span class="group-hover:translate-x-2 transition duration-300 inline-block">Book Now</span>
+                        <span class="group-hover:translate-x-2 transition duration-300 inline-block">Pesan Sekarang</span>
                         <i class="fas fa-arrow-right ml-2 opacity-0 group-hover:opacity-100 transition duration-300"></i>
                     </button>
                 </div>
@@ -211,7 +211,7 @@
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
-                        Luxury
+                        Mewah
                     </div>
                     <div class="absolute bottom-4 left-4 flex items-center">
                         <div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium shadow-sm">
@@ -222,9 +222,9 @@
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-xl font-bold text-gray-900">Mercedes-Benz E-Class</h3>
-                        <span class="text-blue-600 font-bold">$149<span class="text-gray-400 text-sm font-normal">/day</span></span>
+                        <span class="text-blue-600 font-bold">Rp2.250K<span class="text-gray-400 text-sm font-normal">/hari</span></span>
                     </div>
-                    <p class="text-gray-500 mb-4">Executive luxury with cutting-edge technology</p>
+                    <p class="text-gray-500 mb-4">Kemewahan eksekutif dengan teknologi canggih</p>
                     
                     <div class="grid grid-cols-3 gap-4 mb-6">
                         <div class="text-center">
@@ -233,16 +233,16 @@
                         </div>
                         <div class="text-center">
                             <div class="text-gray-400 mb-1"><i class="fas fa-cogs"></i></div>
-                            <span class="text-sm">Auto</span>
+                            <span class="text-sm">Otomatis</span>
                         </div>
                         <div class="text-center">
                             <div class="text-gray-400 mb-1"><i class="fas fa-gas-pump"></i></div>
-                            <span class="text-sm">7.2L/100km</span>
+                            <span class="text-sm">7,2L/100km</span>
                         </div>
                     </div>
                     
                     <button class="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition duration-300 group">
-                        <span class="group-hover:translate-x-2 transition duration-300 inline-block">Book Now</span>
+                        <span class="group-hover:translate-x-2 transition duration-300 inline-block">Pesan Sekarang</span>
                         <i class="fas fa-arrow-right ml-2 opacity-0 group-hover:opacity-100 transition duration-300"></i>
                     </button>
                 </div>
@@ -267,9 +267,9 @@
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-xl font-bold text-gray-900">Toyota RAV4 Hybrid</h3>
-                        <span class="text-blue-600 font-bold">$79<span class="text-gray-400 text-sm font-normal">/day</span></span>
+                        <span class="text-blue-600 font-bold">Rp1.200K<span class="text-gray-400 text-sm font-normal">/hari</span></span>
                     </div>
-                    <p class="text-gray-500 mb-4">Efficient and spacious for family adventures</p>
+                    <p class="text-gray-500 mb-4">Efisien dan luas untuk petualangan keluarga</p>
                     
                     <div class="grid grid-cols-3 gap-4 mb-6">
                         <div class="text-center">
@@ -282,12 +282,12 @@
                         </div>
                         <div class="text-center">
                             <div class="text-gray-400 mb-1"><i class="fas fa-gas-pump"></i></div>
-                            <span class="text-sm">6.8L/100km</span>
+                            <span class="text-sm">6,8L/100km</span>
                         </div>
                     </div>
                     
                     <button class="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition duration-300 group">
-                        <span class="group-hover:translate-x-2 transition duration-300 inline-block">Book Now</span>
+                        <span class="group-hover:translate-x-2 transition duration-300 inline-block">Pesan Sekarang</span>
                         <i class="fas fa-arrow-right ml-2 opacity-0 group-hover:opacity-100 transition duration-300"></i>
                     </button>
                 </div>
@@ -296,7 +296,7 @@
         
         <div class="text-center mt-12" data-aos="fade-up">
             <button class="inline-flex items-center px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-full hover:bg-blue-50 transition duration-300">
-                View Full Fleet
+                Lihat Semua Armada
                 <i class="fas fa-arrow-right ml-2"></i>
             </button>
         </div>
@@ -308,12 +308,12 @@
 <div class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16" data-aos="fade-up">
-            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">OUR SERVICES</span>
+            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">LAYANAN KAMI</span>
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Beyond <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Car Rental</span>
+                Lebih dari <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Sewa Mobil</span>
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Comprehensive mobility solutions tailored to your lifestyle
+                Solusi mobilitas komprehensif yang disesuaikan dengan gaya hidup Anda
             </p>
         </div>
         
@@ -324,22 +324,22 @@
                     <div class="w-14 h-14 bg-white rounded-xl shadow-md flex items-center justify-center mb-6">
                         <i class="fas fa-car text-2xl text-blue-600"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Flexible Fleet</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Armada Fleksibel</h3>
                     <p class="text-gray-600 leading-relaxed mb-6">
-                        Choose from 12 vehicle categories with flexible rental periods from hourly to monthly.
+                        Pilih dari 12 kategori kendaraan dengan periode sewa fleksibel dari per jam hingga bulanan.
                     </p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>150+ vehicles available</span>
+                            <span>150+ kendaraan tersedia</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>Hourly, daily, weekly rates</span>
+                            <span>Tarif harian, mingguan, bulanan</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>One-way rentals available</span>
+                            <span>Sewa satu arah tersedia</span>
                         </li>
                     </ul>
                 </div>
@@ -351,22 +351,22 @@
                     <div class="w-14 h-14 bg-white rounded-xl shadow-md flex items-center justify-center mb-6">
                         <i class="fas fa-headset text-2xl text-blue-600"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Premium Support</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Dukungan Premium</h3>
                     <p class="text-gray-600 leading-relaxed mb-6">
-                        White-glove service with dedicated account managers for corporate clients.
+                        Layanan berkelas dengan manajer akun khusus untuk klien korporat.
                     </p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>24/7 multilingual support</span>
+                            <span>Dukungan multibahasa 24/7</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>Dedicated account managers</span>
+                            <span>Manajer akun khusus</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>Priority booking access</span>
+                            <span>Akses pemesanan prioritas</span>
                         </li>
                     </ul>
                 </div>
@@ -378,22 +378,22 @@
                     <div class="w-14 h-14 bg-white rounded-xl shadow-md flex items-center justify-center mb-6">
                         <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Total Protection</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Perlindungan Total</h3>
                     <p class="text-gray-600 leading-relaxed mb-6">
-                        Comprehensive coverage options tailored to your rental needs.
+                        Opsi perlindungan komprehensif yang disesuaikan dengan kebutuhan sewa Anda.
                     </p>
                     <ul class="space-y-2 text-gray-600">
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>Zero deductible options</span>
+                            <span>Opsi tanpa deductible</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>24/7 roadside assistance</span>
+                            <span>Bantuan darurat 24/7</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check-circle text-blue-500 mr-2"></i>
-                            <span>Damage protection included</span>
+                            <span>Perlindungan kerusakan termasuk</span>
                         </li>
                     </ul>
                 </div>
@@ -406,12 +406,12 @@
 <div class="py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16" data-aos="fade-up">
-            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">TESTIMONIALS</span>
+            <span class="inline-block bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">TESTIMONI</span>
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Client <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Experiences</span>
+                Pengalaman <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">Klien</span>
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Don't take our word for it - hear from our valued customers
+                Jangan hanya percaya kata kami - dengar dari pelanggan berharga kami
             </p>
         </div>
         
@@ -419,10 +419,10 @@
             <!-- Testimonial 1 -->
             <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500" data-aos="fade-up">
                 <div class="flex items-center mb-6">
-                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Doe" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Budi Santoso" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md">
                     <div class="ml-4">
-                        <h4 class="text-lg font-bold text-gray-900">John Doe</h4>
-                        <p class="text-gray-500 text-sm">Business Traveler</p>
+                        <h4 class="text-lg font-bold text-gray-900">Budi Santoso</h4>
+                        <p class="text-gray-500 text-sm">Pelancong Bisnis</p>
                     </div>
                 </div>
                 <div class="text-yellow-400 mb-4">
@@ -433,7 +433,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <p class="text-gray-600 leading-relaxed mb-6">
-                    "The seamless booking process and impeccable vehicle condition made this my go-to rental service for all business trips."
+                    "Proses pemesanan yang mudah dan kondisi kendaraan yang sempurna membuat ini menjadi layanan sewa favorit saya untuk semua perjalanan bisnis."
                 </p>
                 <div class="text-blue-500">
                     <i class="fas fa-quote-right text-3xl opacity-20"></i>
@@ -443,10 +443,10 @@
             <!-- Testimonial 2 -->
             <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500" data-aos="fade-up" data-aos-delay="100">
                 <div class="flex items-center mb-6">
-                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Jane Smith" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md">
+                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Sari Wijaya" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md">
                     <div class="ml-4">
-                        <h4 class="text-lg font-bold text-gray-900">Jane Smith</h4>
-                        <p class="text-gray-500 text-sm">Family Vacation</p>
+                        <h4 class="text-lg font-bold text-gray-900">Sari Wijaya</h4>
+                        <p class="text-gray-500 text-sm">Liburan Keluarga</p>
                     </div>
                 </div>
                 <div class="text-yellow-400 mb-4">
@@ -457,7 +457,7 @@
                     <i class="fas fa-star"></i>
                 </div>
                 <p class="text-gray-600 leading-relaxed mb-6">
-                    "Perfect family SUV with all the safety features we needed. The child seats were clean and properly installed."
+                    "SUV keluarga yang sempurna dengan semua fitur keamanan yang kami butuhkan. Tempat duduk anak bersih dan terpasang dengan benar."
                 </p>
                 <div class="text-blue-500">
                     <i class="fas fa-quote-right text-3xl opacity-20"></i>
@@ -467,10 +467,10 @@
             <!-- Testimonial 3 -->
             <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500" data-aos="fade-up" data-aos-delay="200">
                 <div class="flex items-center mb-6">
-                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Mike Johnson" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md">
+                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Andi Rahman" class="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md">
                     <div class="ml-4">
-                        <h4 class="text-lg font-bold text-gray-900">Mike Johnson</h4>
-                        <p class="text-gray-500 text-sm">Weekend Getaway</p>
+                        <h4 class="text-lg font-bold text-gray-900">Andi Rahman</h4>
+                        <p class="text-gray-500 text-sm">Liburan Akhir Pekan</p>
                     </div>
                 </div>
                 <div class="text-yellow-400 mb-4">
@@ -481,7 +481,7 @@
                     <i class="fas fa-star-half-alt"></i>
                 </div>
                 <p class="text-gray-600 leading-relaxed mb-6">
-                    "The Camaro was an absolute dream to drive. Pickup and dropoff were quicker than any other rental I've used."
+                    "Camaro benar-benar mimpi untuk dikendarai. Pengambilan dan pengembalian lebih cepat dari layanan sewa lain yang pernah saya gunakan."
                 </p>
                 <div class="text-blue-500">
                     <i class="fas fa-quote-right text-3xl opacity-20"></i>
@@ -496,10 +496,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">
-                    Our Trusted <span class="gradient-text">Partners</span>
+                    Mitra <span class="gradient-text">Terpercaya</span> Kami
                 </h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    We partner with the world's leading automotive brands to provide you with the best vehicles
+                    Kami bermitra dengan merek otomotif terkemuka dunia untuk memberikan kendaraan terbaik untuk Anda
                 </p>
             </div>
             

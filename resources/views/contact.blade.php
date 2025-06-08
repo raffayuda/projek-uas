@@ -4,33 +4,33 @@
     <div class="booking-header">
         <div class="hero-pattern"></div>
         <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-             alt="Contact Us" 
+             alt="Hubungi Kami" 
              class="hero-car">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
             <div class="hero-content text-center">
                 <div class="hero-badge" data-aos="fade-up">
                     <i class="fas fa-envelope"></i>
-                    <span class="text-white">Get in Touch</span>
+                    <span class="text-white">Hubungi Kami</span>
                 </div>
                 <h1 class="text-5xl font-extrabold text-white sm:text-6xl lg:text-7xl mb-8" data-aos="fade-up" data-aos-delay="100">
-                    Contact <span class="gradient-text">Us</span>
+                    Kontak <span class="gradient-text">Kami</span>
                 </h1>
                 <p class="text-2xl text-gray-200 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
-                    Have questions or need assistance? We're here to help.
-                    Reach out to our team for prompt and professional support.
+                    Ada pertanyaan atau butuh bantuan? Kami siap membantu Anda.
+                    Hubungi tim kami untuk mendapatkan dukungan yang cepat dan profesional.
                 </p>
                 <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
                     <div class="stat-card">
                         <div class="stat-number">Email</div>
-                        <div class="stat-label">Quick Response</div>
+                        <div class="stat-label">Respon Cepat</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">Phone</div>
-                        <div class="stat-label">Direct Support</div>
+                        <div class="stat-number">Telepon</div>
+                        <div class="stat-label">Dukungan Langsung</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">Chat</div>
-                        <div class="stat-label">Live Support</div>
+                        <div class="stat-label">Dukungan Live</div>
                     </div>
                 </div>
             </div>
@@ -52,9 +52,9 @@
             <!-- Contact Information -->
             <div class="p-10 md:p-12 bg-white bg-opacity-70 backdrop-blur-sm">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Get in Touch</span>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Hubungi Kami</span>
                 </h2>
-                <p class="text-gray-600 mb-8 text-lg">Our team is happy to answer your questions. Fill out the form and we'll be in touch as soon as possible.</p>
+                <p class="text-gray-600 mb-8 text-lg">Tim kami dengan senang hati menjawab pertanyaan Anda. Isi formulir dan kami akan menghubungi Anda secepatnya.</p>
                 
                 <div class="space-y-6">
                     <div class="flex items-start">
@@ -64,8 +64,8 @@
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <h3 class="text-lg font-semibold text-gray-900">Email Us</h3>
-                            <p class="text-gray-600">support@yourcompany.com</p>
+                            <h3 class="text-lg font-semibold text-gray-900">Email Kami</h3>
+                            <p class="text-gray-600">support@perusahaananda.com</p>
                         </div>
                     </div>
                     
@@ -76,8 +76,8 @@
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <h3 class="text-lg font-semibold text-gray-900">Call Us</h3>
-                            <p class="text-gray-600">+1 (555) 123-4567</p>
+                            <h3 class="text-lg font-semibold text-gray-900">Telepon Kami</h3>
+                            <p class="text-gray-600">+62 21 1234-5678</p>
                         </div>
                     </div>
                     
@@ -89,8 +89,8 @@
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <h3 class="text-lg font-semibold text-gray-900">Visit Us</h3>
-                            <p class="text-gray-600">123 Business Ave, Suite 400<br>San Francisco, CA 94107</p>
+                            <h3 class="text-lg font-semibold text-gray-900">Kunjungi Kami</h3>
+                            <p class="text-gray-600">Jl. Bisnis Raya No. 123, Suite 400<br>Jakarta Selatan, DKI Jakarta 12190</p>
                         </div>
                     </div>
                 </div>
@@ -138,10 +138,10 @@
                                 name = email = subject = message = '';
                                 setTimeout(() => success = false, 5000);
                             } else {
-                                error = data.message || 'Failed to send message.';
+                                error = data.message || 'Gagal mengirim pesan.';
                             }
                         })
-                        .catch(() => { error = 'Failed to send message.'; })
+                        .catch(() => { error = 'Gagal mengirim pesan.'; })
                         .finally(() => { submitting = false; });
                       ">
                     <template x-if="success">
@@ -149,7 +149,7 @@
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                             </svg>
-                            <span>Thank you! Your message has been sent.</span>
+                            <span>Terima kasih! Pesan Anda telah terkirim.</span>
                         </div>
                     </template>
                     <template x-if="error">
@@ -162,11 +162,11 @@
                     
                     <div class="space-y-5">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Anda</label>
                             <div class="relative">
                                 <input type="text" x-model="name" required 
                                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all pl-12"
-                                       placeholder="John Doe">
+                                       placeholder="Budi Santoso">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -176,11 +176,11 @@
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Alamat Email</label>
                             <div class="relative">
                                 <input type="email" x-model="email" required 
                                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all pl-12"
-                                       placeholder="you@example.com">
+                                       placeholder="anda@example.com">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -190,11 +190,11 @@
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Subjek</label>
                             <div class="relative">
                                 <input type="text" x-model="subject" required 
                                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all pl-12"
-                                       placeholder="How can we help?">
+                                       placeholder="Bagaimana kami bisa membantu?">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
@@ -204,11 +204,11 @@
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Pesan Anda</label>
                             <div class="relative">
                                 <textarea x-model="message" required rows="4"
                                           class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all pl-12"
-                                          placeholder="Tell us about your inquiry..."></textarea>
+                                          placeholder="Ceritakan kepada kami tentang pertanyaan Anda..."></textarea>
                                 <div class="absolute top-3 left-0 pl-3 flex items-start pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
@@ -227,7 +227,7 @@
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
                                 </template>
-                                <span x-text="submitting ? 'Sending...' : 'Send Message'"></span>
+                                <span x-text="submitting ? 'Mengirim...' : 'Kirim Pesan'"></span>
                             </button>
                         </div>
                     </div>

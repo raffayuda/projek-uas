@@ -21,9 +21,7 @@ class Armada extends Model
     public function peminjaman()
     {
         return $this->hasMany(Peminjaman::class, 'armada_id');
-    }
-
-    public function scopeFilter($query, array $filters)
+    }    public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, fn($query, $search) =>
             $query->where('merk', 'like', '%'.$search.'%')
@@ -37,11 +35,11 @@ class Armada extends Model
         $query->when($filters['status'] ?? false, function($query, $status) {
             if ($status === 'available') {
                 return $query->whereDoesntHave('peminjaman', function($query) {
-                    $query->where('status_pinjam', '!=', 'Completed');
+                    $query->whereIn('status_pinjam', ['Pending', 'Dipinjam']);
                 });
             } elseif ($status === 'rented') {
                 return $query->whereHas('peminjaman', function($query) {
-                    $query->where('status_pinjam', '!=', 'Completed');
+                    $query->whereIn('status_pinjam', ['Pending', 'Dipinjam']);
                 });
             }
         });
@@ -49,9 +47,26 @@ class Armada extends Model
 
     public function getStatusAttribute()
     {
-        return $this->peminjaman()->where('status_pinjam', '!=', 'Completed')->exists() 
+        return $this->peminjaman()->whereIn('status_pinjam', ['Pending', 'Dipinjam'])->exists() 
             ? 'rented' 
             : 'available';
+    }
+
+    /**
+     * Check if car is available for specific date range
+     */
+    public function isAvailableForDates($startDate, $endDate)
+    {
+        return !$this->peminjaman()
+            ->whereIn('status_pinjam', ['Pending', 'Dipinjam'])
+            ->where(function($query) use ($startDate, $endDate) {
+                $query->whereBetween('mulai', [$startDate, $endDate])
+                      ->orWhereBetween('selesai', [$startDate, $endDate])
+                      ->orWhere(function($subQuery) use ($startDate, $endDate) {
+                          $subQuery->where('mulai', '<=', $startDate)
+                                   ->where('selesai', '>=', $endDate);
+                      });
+            })->exists();
     }
 
     public function getStatusColorAttribute()

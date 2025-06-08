@@ -8,6 +8,7 @@ use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class PeminjamanController extends Controller
@@ -53,8 +54,20 @@ class PeminjamanController extends Controller
             'waktu_pengembalian' => 'required',
             'keperluan_pinjam' => 'required|string',
         ]);        if ($request->hasFile('ktp_peminjam')) {
-            $ktpPath = $request->file('ktp_peminjam')->store('uploads/ktp', 'public');
-            $validated['ktp_peminjam'] = $ktpPath;
+            $file = $request->file('ktp_peminjam');
+            $filename = time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
+            
+            // Create directory if it doesn't exist
+            $uploadPath = storage_path('app/public/uploads/ktp');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            
+            // Store file in storage
+            $file->move($uploadPath, $filename);
+            
+            // Save only the filename to database
+            $validated['ktp_peminjam'] = $filename;
         }
 
         $start = Carbon::parse($validated['mulai'])->startOfDay();
@@ -107,21 +120,37 @@ class PeminjamanController extends Controller
             'waktu_pengembalian' => 'required',
             'keperluan_pinjam' => 'required|string',
             'status_pinjam' => 'required|in:Pending,Dipinjam,Selesai,Dibatalkan',
-        ]);
-
-        if ($request->has('delete_ktp') && $peminjaman->ktp_peminjam) {
-            Storage::delete($peminjaman->ktp_peminjam);
+        ]);        if ($request->has('delete_ktp') && $peminjaman->ktp_peminjam) {
+            $ktpPath = 'uploads/ktp/' . $peminjaman->ktp_peminjam;
+            if (Storage::disk('public')->exists($ktpPath)) {
+                Storage::disk('public')->delete($ktpPath);
+            }
             $validated['ktp_peminjam'] = null;
         }
 
         if ($request->hasFile('ktp_peminjam')) {
             if ($peminjaman->ktp_peminjam) {
-                Storage::delete($peminjaman->ktp_peminjam);
+                $ktpPath = 'uploads/ktp/' . $peminjaman->ktp_peminjam;
+                if (Storage::disk('public')->exists($ktpPath)) {
+                    Storage::disk('public')->delete($ktpPath);
+                }
             }
             
-            $ktpPath = $request->file('ktp_peminjam')->store('uploads/ktp', 'public');
-            $validated['ktp_peminjam'] = $ktpPath;
-        }        $start = Carbon::parse($validated['mulai'])->startOfDay();
+            $file = $request->file('ktp_peminjam');
+            $filename = time() . '_' . Str::random(6) . '.' . $file->getClientOriginalExtension();
+            
+            // Create directory if it doesn't exist
+            $uploadPath = storage_path('app/public/uploads/ktp');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            
+            // Store file in storage
+            $file->move($uploadPath, $filename);
+            
+            // Save only the filename to database
+            $validated['ktp_peminjam'] = $filename;
+        }$start = Carbon::parse($validated['mulai'])->startOfDay();
         $end = Carbon::parse($validated['selesai'])->startOfDay();
         $days = $start->diffInDays($end);
         if ($days < 1) $days = 1;
@@ -132,12 +161,13 @@ class PeminjamanController extends Controller
 
         return redirect()->route('peminjaman.index')
             ->with('success', 'Peminjaman berhasil diperbarui');
-    }
-
-    public function destroy(Peminjaman $peminjaman)
+    }    public function destroy(Peminjaman $peminjaman)
     {
         if ($peminjaman->ktp_peminjam) {
-            Storage::disk('public')->delete($peminjaman->ktp_peminjam);
+            $ktpPath = 'uploads/ktp/' . $peminjaman->ktp_peminjam;
+            if (Storage::disk('public')->exists($ktpPath)) {
+                Storage::disk('public')->delete($ktpPath);
+            }
         }
         
         $peminjaman->delete();

@@ -30,20 +30,21 @@ class LocationController extends Controller
         ]);
 
         $data = $request->all();
-
+        
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . Str::random(6) . '.' . $image->getClientOriginalExtension();
             
-            // Pastikan folder ada
-            if (!Storage::disk('public')->exists('location-images')) {
-                Storage::disk('public')->makeDirectory('location-images');
+            // Create directory if it doesn't exist
+            $uploadPath = storage_path('app/public/location-images');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
             }
             
-            // Simpan gambar ke storage/app/public/location-images
-            $image->storeAs('location-images', $imageName, 'public');
+            // Store file in storage
+            $image->move($uploadPath, $imageName);
             
-            // Simpan hanya nama file ke database
+            // Save only the filename to database
             $data['image'] = $imageName;
         }
 
@@ -68,7 +69,7 @@ class LocationController extends Controller
         ]);
 
         $data = $request->except(['image']); // Exclude image from mass assignment
-
+        
         if ($request->hasFile('image')) {
             // Hapus gambar lama jika ada
             if ($lokasi->image && Storage::disk('public')->exists('location-images/' . $lokasi->image)) {
@@ -76,17 +77,18 @@ class LocationController extends Controller
             }
 
             $image = $request->file('image');
-            $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . Str::random(6) . '.' . $image->getClientOriginalExtension();
             
-            // Pastikan folder ada
-            if (!Storage::disk('public')->exists('location-images')) {
-                Storage::disk('public')->makeDirectory('location-images');
+            // Create directory if it doesn't exist
+            $uploadPath = storage_path('app/public/location-images');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
             }
             
-            // Simpan gambar baru ke storage/app/public/location-images
-            $image->storeAs('location-images', $imageName, 'public');
+            // Store file in storage
+            $image->move($uploadPath, $imageName);
             
-            // Tambahkan nama file ke data
+            // Save only the filename to database
             $data['image'] = $imageName;
         }
 
