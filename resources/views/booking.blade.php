@@ -688,8 +688,10 @@
             </div>
         </div>
     </div>    <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="flex items-center justify-center min-h-screen p-4">
+    <div id="success-modal" class="fixed inset-0 z-50 hidden">
+        <div class="fixed inset-0 transition-opacity" 
+             style="background-color: rgba(0, 0, 0, 0.1);"></div>
+        <div class="flex items-center justify-center min-h-screen p-4 relative z-10">
             <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center animate-bounce-in" data-aos="zoom-in">
             <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i class="fas fa-check-circle text-green-500 text-4xl"></i>
