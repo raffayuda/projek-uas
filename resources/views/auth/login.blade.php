@@ -179,6 +179,16 @@
                             </button>
                         </div>
 
+                        <!-- Register Link -->
+                        <div class="text-center">
+                            <p class="text-sm text-white/70">
+                                Don't have an account?
+                                <a href="{{ route('register') }}" class="font-medium text-cyan-300 hover:text-cyan-200 transition-colors duration-300">
+                                    Create one here
+                                </a>
+                            </p>
+                        </div>
+
                         <!-- Divider -->
                         <div class="relative">
                             <div class="absolute inset-0 flex items-center">

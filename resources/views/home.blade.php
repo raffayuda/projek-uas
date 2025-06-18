@@ -36,10 +36,10 @@
             <div class="hero-content text-center">
                 <div class="hero-badge" data-aos="fade-up">
                     <i class="fas fa-home"></i>
-                    <span class="text-white">Selamat Datang di DriveEase</span>
+                    <span class="text-white">Selamat Datang di DrivEasy</span>
                 </div>
                 <h1 class="text-5xl font-extrabold text-white sm:text-6xl lg:text-7xl mb-8" data-aos="fade-up" data-aos-delay="100">
-                    Selamat Datang di <span class="gradient-text">DriveEase</span>
+                    Selamat Datang di <span class="gradient-text">DrivEasy</span>
                 </h1>
                 <p class="text-2xl text-gray-200 max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
                     Mitra terpercaya untuk penyewaan mobil premium di Indonesia.
@@ -51,7 +51,7 @@
                         <div class="stat-label">Tahun Berpengalaman</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">20K+</div>
+                        <div class="stat-number">90%</div>
                         <div class="stat-label">Klien Puas</div>
                     </div>
                     <div class="stat-card">

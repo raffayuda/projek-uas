@@ -6,10 +6,10 @@
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
                     <a href="/" class="flex-shrink-0 flex items-center group">
-                        <div class="p-2 bg-blue-600 rounded-lg group-hover:bg-blue-700 transition duration-300">
-                            <i class="fas fa-car-side text-2xl text-white"></i>
+                        <div class="p-2  rounded-lg group-hover:bg-blue-700 transition duration-300">
+                            <img src="{{ asset('images/logo.png') }}" class="w-[80px]" alt="">
                         </div>
-                        <span class="ml-3 text-2xl font-bold logo-text">DriveEase</span>
+                        <span class="ml-3 text-2xl font-bold logo-text">DrivEasy</span>
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
@@ -20,12 +20,21 @@
                     <a href="/booking" class="nav-link font-medium{{ request()->is('booking') ? ' active' : '' }}">Booking</a>
                     <a href="/contact" class="nav-link font-medium{{ request()->is('contact') ? ' active' : '' }}">Contact</a>
                     @if (Auth::check())
-                    <a href="/mybooking" class="w-full nav-button text-white px-6 py-2.5 rounded-full mt-4">
+                    <a href="/mybooking" class="nav-link font-medium">
                         My Booking
                     </a>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit" class="nav-button text-white px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-700 transition-colors duration-300">
+                            Logout
+                        </button>
+                    </form>
                     @else
-                    <a href="/login" class="w-full nav-button text-white px-6 py-2.5 rounded-full mt-4">
+                    <a href="/login" class="nav-link font-medium">
                         Login
+                    </a>
+                    <a href="/register" class="nav-button text-white px-6 py-2.5 rounded-full">
+                        Register
                     </a>
                     @endif
                 </div>
@@ -48,10 +57,20 @@
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="/" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Home</a>
                 <a href="/cars" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Cars</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Services</a>
-                <a href="/booking" class="block px-3 py-2 text-blue-600 font-medium">Booking</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">About</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Contact</a>
+                <a href="/about" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">About</a>
+                <a href="/location" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Location</a>
+                <a href="/booking" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Booking</a>
+                <a href="/contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Contact</a>
+                @if (Auth::check())
+                <a href="/mybooking" class="block px-3 py-2 text-blue-600 font-medium">My Booking</a>
+                <form method="POST" action="{{ route('logout') }}" class="px-3 py-2">
+                    @csrf
+                    <button type="submit" class="w-full text-left text-red-600 font-medium">Logout</button>
+                </form>
+                @else
+                <a href="/login" class="block px-3 py-2 text-blue-600 font-medium">Login</a>
+                <a href="/register" class="block px-3 py-2 text-green-600 font-medium">Register</a>
+                @endif
             </div>
         </div>
     </nav>

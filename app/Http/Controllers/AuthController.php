@@ -58,4 +58,34 @@ class AuthController extends Controller
         // For now, we'll just redirect back with a message
         return back()->with('status', 'Password reset link sent to your email!');
     }
-} 
+
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:500',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'role_user_id' => 4, // Set role as user
+        ]);
+
+        // Auto login after registration
+        Auth::login($user);
+
+        return redirect('/')->with('success', 'Registration successful! Welcome to our platform.');
+    }
+}

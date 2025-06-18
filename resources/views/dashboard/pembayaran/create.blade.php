@@ -159,7 +159,7 @@
                             <template x-if="metode == 'QRIS'">
                                 <div class="mt-4 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 text-center border border-purple-200" x-transition>
                                     <div class="bg-white rounded-lg p-4 inline-block shadow-lg">
-                                        <img src="{{ asset('img/qris-sample.png') }}" alt="QRIS" class="h-40 mx-auto rounded">
+                                        <img src="{{ asset('images/qr.jpg') }}" alt="QRIS" class="h-40 mx-auto rounded">
                                     </div>
                                     <div class="mt-3">
                                         <div class="text-sm font-semibold text-purple-700">Scan QRIS untuk pembayaran</div>
