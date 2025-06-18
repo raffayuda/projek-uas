@@ -1,6 +1,44 @@
 @extends('layouts.index')
 
 @section('content')
+<style>
+    /* Modal overlay fixes */
+    .modal-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+        z-index: 9998 !important;
+    }
+    
+    /* Ensure proper z-index layering */
+    .modal-container {
+        z-index: 9999 !important;
+    }
+    
+    .modal-content {
+        z-index: 10000 !important;
+        position: relative;
+    }
+    
+    /* Smooth transitions */
+    .modal-transition {
+        transition: all 0.3s ease-in-out;
+    }
+    
+    /* Fix for overlapping content */
+    [x-cloak] { 
+        display: none !important; 
+    }
+    
+    /* Ensure modal is above everything */
+    .fixed.inset-0.z-\\[60\\] {
+        z-index: 9999 !important;
+    }
+    
+    .fixed.inset-0.z-\\[70\\] {
+        z-index: 10001 !important;
+    }
+</style>
+
 <div class="booking-header">
     <div class="hero-pattern"></div>
     <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
@@ -235,16 +273,19 @@
              x-transition:leave="ease-in duration-200"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
-             class="fixed inset-0 z-50 overflow-y-auto" 
-             style="display: none;">
+             class="fixed inset-0 z-[60] overflow-y-auto" 
+             style="display: none;"
+             x-cloak>
             <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <!-- Overlay -->
-                <div class="fixed inset-0 transition-opacity" aria-hidden="true" @click="closeModal()">
-                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                </div>
+                <div class="fixed inset-0 transition-opacity modal-overlay" 
+                     @click="closeModal()"></div>
+
+                <!-- Centering element -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
                 <!-- Modal Content -->
-                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full modal-content">
                     <div class="bg-white px-6 py-5">
                         <div class="flex items-start justify-between">
                             <div>
@@ -383,20 +424,19 @@
              x-transition:leave="ease-in duration-200"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
-             class="fixed inset-0 z-50 overflow-y-auto"
+             class="fixed inset-0 z-[70] overflow-y-auto"
              style="display: none;"
              x-cloak>
             <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <!-- Overlay -->
-                <div class="fixed inset-0 transition-opacity" 
-                     style="background-color: transparent;"
+                <div class="fixed inset-0 transition-opacity modal-overlay" 
                      @click="hideCancelModal()"></div>
 
                 <!-- Centering element -->
                 <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
                 <!-- Modal Content -->
-                <div class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full modal-content">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
                             <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
