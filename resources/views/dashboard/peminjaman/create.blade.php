@@ -77,6 +77,36 @@
                                             <h3 class="text-xl font-bold text-gray-800">Informasi Peminjam</h3>
                                         </div>
                                         
+                                        <!-- User Account Selection -->
+                                        <div class="mb-6 p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-200">
+                                            <label for="user_id" class="block text-sm font-medium text-gray-700 mb-2">
+                                                <i class="fas fa-user-circle mr-2 text-indigo-600"></i>
+                                                Pilih Akun User
+                                            </label>
+                                            <select name="user_id" id="user_id" required
+                                                    class="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-indigo-300 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-300">
+                                                <option value="">-- Pilih Akun User --</option>
+                                                @foreach($users as $user)
+                                                    <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                                        {{ $user->name }} - {{ $user->email }}
+                                                        @if($user->phone)
+                                                            ({{ $user->phone }})
+                                                        @endif
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_id')
+                                                <p class="text-red-500 text-sm mt-1 flex items-center">
+                                                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                            <p class="text-xs text-gray-600 mt-2">
+                                                <i class="fas fa-info-circle mr-1"></i>
+                                                Peminjaman akan dikaitkan dengan akun user yang dipilih
+                                            </p>
+                                        </div>
+                                        
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div class="space-y-2">
                                                 <label for="nama_peminjam" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>

@@ -53,6 +53,9 @@ Route::middleware(['auth'])->group(function () {
     // Location Routes
     Route::resource('lokasi', LocationController::class);
 
+    // User Management Routes
+    Route::resource('users', App\Http\Controllers\UserController::class);
+
     // Laporan Routes
     Route::prefix('laporan')->name('laporan.')->group(function () {
         Route::get('/', [App\Http\Controllers\LaporanController::class, 'index'])->name('index');

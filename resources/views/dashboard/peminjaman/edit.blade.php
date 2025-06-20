@@ -102,7 +102,45 @@
                                     </div>
                                 </div>
                                 
-                                <div class="space-y-6">                                    <div class="relative">
+                                <div class="space-y-6">
+                                    <!-- User Account Selection -->
+                                    <div class="relative p-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-200">
+                                        <label for="user_id" class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                            <svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            Akun User Terkait
+                                        </label>
+                                        <select name="user_id" id="user_id" required
+                                                class="w-full px-4 py-3 rounded-xl border-0 bg-white/90 backdrop-blur-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all duration-300 modern-input">
+                                            <option value="">-- Pilih Akun User --</option>
+                                            @foreach($users as $user)
+                                                <option value="{{ $user->id }}" 
+                                                        {{ old('user_id', $peminjaman->user_id ?? '') == $user->id ? 'selected' : '' }}>
+                                                    {{ $user->name }} - {{ $user->email }}
+                                                    @if($user->phone)
+                                                        ({{ $user->phone }})
+                                                    @endif
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('user_id')
+                                            <p class="mt-2 text-sm text-red-600 flex items-center">
+                                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                        <p class="text-xs text-gray-600 mt-2 flex items-center">
+                                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            Peminjaman akan dikaitkan dengan akun user yang dipilih
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="relative">
                                         <label for="nama_peminjam" class="text-sm font-semibold text-gray-700 mb-2 flex items-center">
                                             <svg class="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>

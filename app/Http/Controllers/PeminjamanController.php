@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Peminjaman;
 use App\Models\Armada;
 use App\Models\Lokasi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -32,16 +33,19 @@ class PeminjamanController extends Controller
         })->get();
         
         $lokasis = Lokasi::all();
+        $users = User::orderBy('name')->get();
         
         return view('dashboard.peminjaman.create', [
             'armadas' => $armadas,
-            'lokasis' => $lokasis
+            'lokasis' => $lokasis,
+            'users' => $users
         ]);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
             'nama_peminjam' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'ktp_peminjam' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -77,7 +81,6 @@ class PeminjamanController extends Controller
         $armada = Armada::findOrFail($validated['armada_id']);
         $validated['biaya'] = $days * $armada->harga;
 
-        $validated['user_id'] = Auth::id();
         $validated['status_pinjam'] = 'Pending';
 
         $peminjaman = Peminjaman::create($validated);
@@ -97,17 +100,20 @@ class PeminjamanController extends Controller
     {
         $armadas = Armada::all();
         $lokasis = Lokasi::all();
+        $users = User::orderBy('name')->get();
         
         return view('dashboard.peminjaman.edit', [
             'peminjaman' => $peminjaman,
             'armadas' => $armadas,
-            'lokasis' => $lokasis
+            'lokasis' => $lokasis,
+            'users' => $users
         ]);
     }
 
     public function update(Request $request, Peminjaman $peminjaman)
     {
         $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
             'nama_peminjam' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'ktp_peminjam' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',

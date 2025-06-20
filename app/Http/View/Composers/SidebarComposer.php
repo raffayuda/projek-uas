@@ -6,6 +6,8 @@ use Illuminate\View\View;
 use App\Models\Peminjaman;
 use App\Models\Armada;
 use App\Models\Pembayaran;
+use App\Models\User;
+use App\Models\Lokasi;
 
 class SidebarComposer
 {
@@ -21,12 +23,22 @@ class SidebarComposer
         $availableArmada = Armada::whereDoesntHave('peminjaman', function($query) {
             $query->whereIn('status_pinjam', ['Pending', 'Approved']);
         })->count();
+        
+        // Additional counts for sidebar
+        $userCount = User::count();
+        $pembayaranCount = Pembayaran::count();
+        $lokasiCount = Lokasi::count();
+        $armadaCount = $totalArmada;
 
         $view->with([
             'activePeminjamanCount' => $activePeminjamanCount,
             'pendingPembayaranCount' => $pendingPembayaranCount,
             'totalArmada' => $totalArmada,
-            'availableArmada' => $availableArmada
+            'availableArmada' => $availableArmada,
+            'userCount' => $userCount,
+            'pembayaranCount' => $pembayaranCount,
+            'lokasiCount' => $lokasiCount,
+            'armadaCount' => $armadaCount
         ]);
     }
 }

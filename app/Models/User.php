@@ -25,6 +25,7 @@ class User extends Authenticatable
         'address',
         'avatar',
         'role_user_id',
+        'role',
     ];
 
     /**
@@ -59,11 +60,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the peminjamans relationship.
+     */
+    public function peminjamans()
+    {
+        return $this->hasMany(Peminjaman::class, 'user_id');
+    }
+
+    /**
      * Check if user is admin.
      */
     public function isAdmin()
     {
-        return $this->role_user_id === 3;
+        return $this->role === 'admin' || $this->role_user_id === 3;
     }
 
     /**
