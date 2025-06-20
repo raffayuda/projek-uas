@@ -1,3 +1,4 @@
+
 <nav class="navbar fixed w-full z-50" 
          x-data="{ isOpen: false, isScrolled: false }" 
          @scroll.window="isScrolled = (window.pageYOffset > 50) ? true : false"
@@ -6,10 +7,13 @@
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
                     <a href="/" class="flex-shrink-0 flex items-center group">
-                        <div class="p-2  rounded-lg group-hover:bg-blue-700 transition duration-300">
-                            <img src="{{ asset('images/logo.png') }}" class="w-[80px]" alt="">
+                        <div class="p-2 rounded-lg group-hover:bg-blue-700 transition duration-300">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                                <i class="fas fa-car text-white text-xl"></i>
+                            </div>
                         </div>
-                        <span class="ml-3 text-2xl font-bold logo-text">DrivEasy</span>
+                        <span class="ml-3 text-2xl font-bold logo-text transition-colors duration-300" 
+                              :class="isScrolled ? 'text-gray-800' : 'text-white'">DrivEasy</span>
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
@@ -39,7 +43,9 @@
                     @endif
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button @click="isOpen = !isOpen" class="text-white transition duration-300" :class="{'text-gray-700': isScrolled}">
+                    <button @click="isOpen = !isOpen" 
+                            class="transition duration-300" 
+                            :class="isScrolled ? 'text-gray-700' : 'text-white'">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>

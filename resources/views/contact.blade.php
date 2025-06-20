@@ -65,7 +65,7 @@
                         </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-semibold text-gray-900">Email Kami</h3>
-                            <p class="text-gray-600">support@perusahaananda.com</p>
+                            <p class="text-gray-600">driveasy@gmail.com</p>
                         </div>
                     </div>
                     
@@ -77,7 +77,7 @@
                         </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-semibold text-gray-900">Telepon Kami</h3>
-                            <p class="text-gray-600">+62 21 1234-5678</p>
+                            <p class="text-gray-600">+62 888 - 9623 - 663</p>
                         </div>
                     </div>
                     
@@ -90,7 +90,7 @@
                         </div>
                         <div class="ml-4">
                             <h3 class="text-lg font-semibold text-gray-900">Kunjungi Kami</h3>
-                            <p class="text-gray-600">Jl. Bisnis Raya No. 123, Suite 400<br>Jakarta Selatan, DKI Jakarta 12190</p>
+                            <p class="text-gray-600">Jl. ML.Hamzah No. 25, RT 05 RW 03<br>Bogor, Bogor Barat 1945</p>
                         </div>
                     </div>
                 </div>

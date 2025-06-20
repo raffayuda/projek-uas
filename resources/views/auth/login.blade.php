@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarRental Pro - Login</title>
+    <title>CarRental Pro - Masuk</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -78,11 +78,11 @@
                         <i class="fas fa-car text-8xl text-white floating"></i>
                     </div>
                     <h1 class="text-4xl font-bold text-white mb-4">CarRental Pro</h1>
-                    <p class="text-xl text-white/90 mb-8">Your Premium Car Rental Experience</p>
+                    <p class="text-xl text-white/90 mb-8">Pengalaman Sewa Mobil Premium Anda</p>
                     <div class="flex justify-center space-x-4 text-white/80">
                         <div class="text-center">
                             <i class="fas fa-shield-alt text-2xl mb-2"></i>
-                            <p class="text-sm">Secure</p>
+                            <p class="text-sm">Aman</p>
                         </div>
                         <div class="text-center">
                             <i class="fas fa-clock text-2xl mb-2"></i>
@@ -104,27 +104,27 @@
                             <i class="fas fa-car text-5xl text-white"></i>
                         </div>
                         <h2 class="text-3xl font-bold text-white mb-2">
-                            Welcome Back
+                            Selamat Datang Kembali
                         </h2>
                         <p class="text-white/70">
-                            Sign in to access your dashboard
+                            Masuk untuk mengakses dashboard Anda
                         </p>
                     </div>                    <form class="space-y-6" action="{{ route('login') }}" method="POST">
                         @csrf                        <!-- Email Field -->
                         <div class="group">
                             <label for="email" class="block text-sm font-medium text-white/80 mb-2">
-                                <i class="fas fa-envelope mr-2"></i>Email Address
+                                <i class="fas fa-envelope mr-2"></i>Alamat Email
                             </label>
                             <div class="relative">
                                 @error('email')
                                     <input id="email" name="email" type="email" required 
                                         class="w-full px-4 py-3 bg-white/10 border-2 border-red-400 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition duration-300 backdrop-blur-sm" 
-                                        placeholder="Enter your email"
+                                        placeholder="Masukkan email Anda"
                                         value="{{ old('email') }}">
                                 @else
                                     <input id="email" name="email" type="email" required 
                                         class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition duration-300 backdrop-blur-sm" 
-                                        placeholder="Enter your email"
+                                        placeholder="Masukkan email Anda"
                                         value="{{ old('email') }}">
                                 @enderror
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -141,17 +141,17 @@
                         <!-- Password Field -->
                         <div class="group">
                             <label for="password" class="block text-sm font-medium text-white/80 mb-2">
-                                <i class="fas fa-lock mr-2"></i>Password
+                                <i class="fas fa-lock mr-2"></i>Kata Sandi
                             </label>
                             <div class="relative">
                                 @error('password')
                                     <input id="password" name="password" type="password" required 
                                         class="w-full px-4 py-3 bg-white/10 border-2 border-red-400 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent transition duration-300 backdrop-blur-sm" 
-                                        placeholder="Enter your password">
+                                        placeholder="Masukkan kata sandi Anda">
                                 @else
                                     <input id="password" name="password" type="password" required 
                                         class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition duration-300 backdrop-blur-sm" 
-                                        placeholder="Enter your password">
+                                        placeholder="Masukkan kata sandi Anda">
                                 @enderror
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
                                     <button type="button" onclick="togglePassword()" class="text-white/40 hover:text-white/60 transition-colors">
@@ -175,16 +175,16 @@
                                 <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <i class="fas fa-sign-in-alt text-cyan-200 group-hover:text-white transition-colors"></i>
                                 </span>
-                                <span class="ml-3">Sign In to Dashboard</span>
+                                <span class="ml-3">Masuk ke Dashboard</span>
                             </button>
                         </div>
 
                         <!-- Register Link -->
                         <div class="text-center">
                             <p class="text-sm text-white/70">
-                                Don't have an account?
+                                Belum punya akun?
                                 <a href="{{ route('register') }}" class="font-medium text-cyan-300 hover:text-cyan-200 transition-colors duration-300">
-                                    Create one here
+                                    Buat akun di sini
                                 </a>
                             </p>
                         </div>
@@ -196,7 +196,7 @@
                             </div>
                             <div class="relative flex justify-center text-sm">
                                 <span class="px-2 bg-white/10 text-white/60 rounded-lg backdrop-blur-sm">
-                                    Secure Login
+                                    Login Aman
                                 </span>
                             </div>
                         </div>
@@ -206,8 +206,8 @@
                             <div class="flex items-center">
                                 <i class="fas fa-shield-alt text-green-400 mr-3"></i>
                                 <div>
-                                    <p class="text-sm text-white/80 font-medium">Secure Connection</p>
-                                    <p class="text-xs text-white/60">Your data is protected with enterprise-grade security</p>
+                                    <p class="text-sm text-white/80 font-medium">Koneksi Aman</p>
+                                    <p class="text-xs text-white/60">Data Anda dilindungi dengan keamanan tingkat enterprise</p>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +253,7 @@
             form.addEventListener('submit', function() {
                 submitBtn.innerHTML = `
                     <i class="fas fa-spinner fa-spin mr-2"></i>
-                    Signing In...
+                    Sedang Masuk...
                 `;
                 submitBtn.disabled = true;
             });
