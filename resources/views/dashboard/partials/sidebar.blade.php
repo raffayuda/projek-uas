@@ -53,13 +53,6 @@
           <span class="ml-auto bg-white/20 px-2 py-0.5 rounded-lg text-xs">{{ $lokasiCount }} Spots</span>
        </a>
 
-       <a href="/users" 
-         class="flex items-center px-4 py-3 text-white rounded-xl backdrop-blur-sm border transition-all duration-200 {{ request()->is('users*') ? 'bg-white/10 border-white/10' : 'hover:bg-white/10 border-transparent hover:border-white/10' }} group">
-          <i class="fas fa-users w-5 h-5 {{ request()->is('users*') ? 'text-white' : 'text-blue-200 group-hover:text-white' }} transition-colors"></i>
-          <span class="ml-3 font-medium">Kelola User</span>
-          <span class="ml-auto bg-white/20 px-2 py-0.5 rounded-lg text-xs">{{ $userCount ?? 0 }} Users</span>
-       </a>
-
        <!-- Divider -->
        <div class="px-3 py-4">
           <span class="text-xs font-semibold text-blue-200 uppercase tracking-wider">User Management</span>
