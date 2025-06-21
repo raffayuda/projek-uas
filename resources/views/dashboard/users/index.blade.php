@@ -86,8 +86,8 @@
                 <div class="space-y-3 mb-6">                    <div class="flex items-center justify-between">
                         <span class="text-sm text-gray-600">Role:</span>
                         <span class="px-3 py-1 rounded-full text-xs font-semibold
-                            {{ $user->role === 'admin' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800' }}">
-                            @if($user->role === 'admin')
+                            {{ $user->role_user_id == '3' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800' }}">
+                            @if($user->role_user_id == '3')
                                 <i class="fas fa-crown mr-1"></i>Admin
                             @else
                                 <i class="fas fa-user mr-1"></i>User

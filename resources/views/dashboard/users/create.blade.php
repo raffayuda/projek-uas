@@ -85,11 +85,11 @@
                         <label for="role" class="block text-sm font-semibold text-gray-700 mb-2">
                             <i class="fas fa-user-tag mr-2 text-orange-500"></i>Role User
                         </label>
-                        <select id="role" 
-                                name="role" 
+                        <select id="role_user_id" 
+                                name="role_user_id" 
                                 class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors @error('role') border-red-500 @enderror">
-                            <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
-                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="4" {{ old('role_user_id') == '4' ? 'selected' : '' }}>User</option>
+                            <option value="3" {{ old('role_user_id') == '3' ? 'selected' : '' }}>Admin</option>
                         </select>
                         @error('role')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

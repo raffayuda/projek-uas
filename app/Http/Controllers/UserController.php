@@ -57,12 +57,12 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:500',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'nullable|string|in:admin,user',
+            'role_user_id' => 'nullable',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-        $validated['role'] = $validated['role'] ?? 'user';
+        $validated['role_user_id'] = $validated['role_user_id'] ?? 'user';
 
         // Handle avatar upload
         if ($request->hasFile('avatar')) {
@@ -109,7 +109,7 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:500',
             'password' => 'nullable|string|min:8|confirmed',
-            'role' => 'nullable|string|in:admin,user',
+            'role_user_id' => 'nullable',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -120,7 +120,7 @@ class UserController extends Controller
             unset($validated['password']);
         }
 
-        $validated['role'] = $validated['role'] ?? $user->role;
+        $validated['role_user_id'] = $validated['role_user_id'] ?? $user->role;
 
         // Handle avatar upload
         if ($request->hasFile('avatar')) {
