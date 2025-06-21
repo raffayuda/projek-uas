@@ -51,11 +51,14 @@ class Peminjaman extends Model
     public function pengembalian()
     {
         return $this->belongsTo(Lokasi::class, 'pengembalian_id');
-    }
-
-    public function pembayaran()
+    }    public function pembayaran()
     {
         return $this->hasOne(Pembayaran::class);
+    }
+
+    public function rating()
+    {
+        return $this->hasOne(Rating::class);
     }
 
     public function scopeFilter($query, array $filters)

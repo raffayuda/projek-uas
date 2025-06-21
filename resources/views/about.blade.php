@@ -257,7 +257,7 @@
                     <div class="absolute -inset-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur opacity-0 group-hover:opacity-20 transition duration-700"></div>
                     <div class="relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4">
                         <div class="relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                            <img src="{{ asset('images/raffa.jpg') }}" 
                                  alt="CEO CarRental Pro" 
                                  class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
@@ -266,8 +266,8 @@
                             </div>
                         </div>
                         <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold mb-1">Boday Stevans</h3>
-                            <p class="text-blue-600 font-medium mb-4">CEO & Pendiri</p>
+                            <h3 class="text-xl font-bold mb-1">Raffa Yuda Pratama</h3>
+                            <p class="text-blue-600 font-medium mb-4">Web Developer</p>
                             <div class="flex justify-center space-x-4">
                                 <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition duration-300">
                                     <i class="fab fa-linkedin-in"></i>
@@ -288,7 +288,7 @@
                     <div class="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-3xl blur opacity-0 group-hover:opacity-20 transition duration-700"></div>
                     <div class="relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4">
                         <div class="relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                            <img src="{{ asset('images/noval.jpg') }}" 
                                  alt="Operations Manager" 
                                  class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
@@ -297,7 +297,7 @@
                             </div>
                         </div>
                         <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold mb-1">Sarah Smith</h3>
+                            <h3 class="text-xl font-bold mb-1">Noval Maulani</h3>
                             <p class="text-purple-600 font-medium mb-4">Manajer Operasional</p>
                             <div class="flex justify-center space-x-4">
                                 <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:bg-purple-600 hover:text-white transition duration-300">
@@ -319,7 +319,7 @@
                     <div class="absolute -inset-2 bg-gradient-to-r from-green-500 to-teal-600 rounded-3xl blur opacity-0 group-hover:opacity-20 transition duration-700"></div>
                     <div class="relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4">
                         <div class="relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                            <img src="{{ asset('images/hafiz.jpg') }}" 
                                  alt="Mike Johnson" 
                                  class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
@@ -328,7 +328,7 @@
                             </div>
                         </div>
                         <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold mb-1">Mike Johnson</h3>
+                            <h3 class="text-xl font-bold mb-1">Hafiz Azzaidan</h3>
                             <p class="text-green-600 font-medium mb-4">Manajer Armada</p>
                             <div class="flex justify-center space-x-4">
                                 <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:bg-green-600 hover:text-white transition duration-300">
@@ -350,7 +350,7 @@
                     <div class="absolute -inset-2 bg-gradient-to-r from-orange-500 to-red-600 rounded-3xl blur opacity-0 group-hover:opacity-20 transition duration-700"></div>
                     <div class="relative bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4">
                         <div class="relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                            <img src="{{ asset('images/rozi.jpg') }}" 
                                  alt="Emily Brown" 
                                  class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
@@ -359,7 +359,7 @@
                             </div>
                         </div>
                         <div class="p-6 text-center">
-                            <h3 class="text-xl font-bold mb-1">Emily Brown</h3>
+                            <h3 class="text-xl font-bold mb-1">Muhammad Rozi</h3>
                             <p class="text-orange-600 font-medium mb-4">Hubungan Pelanggan</p>
                             <div class="flex justify-center space-x-4">
                                 <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 hover:bg-orange-600 hover:text-white transition duration-300">

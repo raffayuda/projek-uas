@@ -15,7 +15,8 @@ class MyBookingController extends Controller
             'armada.jenisKendaraan',
             'pengambilan',
             'pengembalian',
-            'pembayaran'
+            'pembayaran',
+            'rating'
         ])
         ->where('user_id', Auth::id())
         ->orderBy('created_at', 'desc')

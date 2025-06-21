@@ -24,9 +24,7 @@
                     <a href="/booking" class="nav-link font-medium{{ request()->is('booking') ? ' active' : '' }}">Booking</a>
                     <a href="/contact" class="nav-link font-medium{{ request()->is('contact') ? ' active' : '' }}">Contact</a>
                     @if (Auth::check())
-                    <a href="/mybooking" class="nav-link font-medium">
-                        My Booking
-                    </a>
+                    <a href="/mybooking" class="nav-link font-medium{{ request()->is('mybooking') ? ' active' : '' }}">My Booking</a>
                     <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
                         <button type="submit" class="nav-button text-white px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-700 transition-colors duration-300">
@@ -68,7 +66,7 @@
                 <a href="/booking" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Booking</a>
                 <a href="/contact" class="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition duration-300">Contact</a>
                 @if (Auth::check())
-                <a href="/mybooking" class="block px-3 py-2 text-blue-600 font-medium">My Booking</a>
+                <a href="/mybooking" class="nav-link font-medium{{ request()->is('mybooking') ? ' active' : '' }}">My Booking</a>
                 <form method="POST" action="{{ route('logout') }}" class="px-3 py-2">
                     @csrf
                     <button type="submit" class="w-full text-left text-red-600 font-medium">Logout</button>

@@ -56,6 +56,9 @@ Route::middleware(['auth'])->group(function () {
     // User Management Routes
     Route::resource('users', App\Http\Controllers\UserController::class);
 
+    // Rating Routes
+    Route::post('/rating', [App\Http\Controllers\RatingController::class, 'store'])->name('rating.store');
+
     // Laporan Routes
     Route::prefix('laporan')->name('laporan.')->group(function () {
         Route::get('/', [App\Http\Controllers\LaporanController::class, 'index'])->name('index');

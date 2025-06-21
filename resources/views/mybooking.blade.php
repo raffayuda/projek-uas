@@ -37,6 +37,32 @@
     .fixed.inset-0.z-\\[70\\] {
         z-index: 10001 !important;
     }
+    
+    /* Rating stars hover effect */
+    .rating-star {
+        transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
+        cursor: pointer;
+    }
+    
+    .rating-star:hover {
+        transform: scale(1.1);
+    }
+    
+    /* Rating section styling */
+    .rating-section {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border: 1px solid #cbd5e0;
+    }
+    
+    /* Smooth rating submission */
+    .rating-submit-btn {
+        transition: all 0.3s ease;
+    }
+    
+    .rating-submit-btn:disabled {
+        opacity: 0.6;
+        transform: scale(0.95);
+    }
 </style>
 
 <div class="booking-header">
@@ -181,7 +207,7 @@
                             <div>
                                 <p class="text-xs font-semibold text-gray-500 uppercase">Pengambilan</p>
                                 <p class="text-sm font-medium">{{ \Carbon\Carbon::parse($booking->mulai)->format('M d, Y') }}</p>
-                                <p class="text-xs text-gray-500">{{ $booking->lokasiPengambilan->nama ?? 'Tidak tersedia' }}</p>
+                                <p class="text-xs text-gray-500">{{ $booking->pengambilan->nama ?? 'Tidak tersedia' }}</p>
                             </div>
                             <div>
                                 <p class="text-xs font-semibold text-gray-500 uppercase">Pengembalian</p>
@@ -347,7 +373,7 @@
                                         </svg>
                                         <div>
                                             <p class="text-sm font-medium text-gray-900">Lokasi Pengambilan</p>
-                                            <p class="text-sm text-gray-600">{{ $booking->lokasiPengambilan->nama ?? 'Tidak tersedia' }}</p>
+                                            <p class="text-sm text-gray-600">{{ $booking->pengambilan->nama ?? 'Tidak tersedia' }}</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start">
@@ -356,7 +382,7 @@
                                         </svg>
                                         <div>
                                             <p class="text-sm font-medium text-gray-900">Lokasi Pengembalian</p>
-                                            <p class="text-sm text-gray-600">{{ $booking->lokasiPengembalian->nama ?? 'Tidak tersedia' }}</p>
+                                            <p class="text-sm text-gray-600">{{ $booking->pengembalian->nama ?? 'Tidak tersedia' }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -393,6 +419,114 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Rating Section (Only for completed bookings) -->
+                        @if($booking->status_pinjam === 'Selesai')
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            @if($booking->rating)
+                                <!-- Show existing rating -->
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="text-sm font-semibold text-green-700 uppercase mb-3 flex items-center">
+                                        <i class="fas fa-star mr-2"></i>Rating Anda
+                                    </h4>
+                                    <div class="flex items-center mb-3">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fas fa-star {{ $i <= $booking->rating->rating ? 'text-yellow-400' : 'text-gray-300' }} mr-1"></i>
+                                        @endfor
+                                        <span class="ml-2 text-sm font-medium text-gray-700">{{ $booking->rating->rating }}/5</span>
+                                    </div>
+                                    @if($booking->rating->review)
+                                        <p class="text-sm text-gray-700 italic">"{{ $booking->rating->review }}"</p>
+                                    @endif
+                                    <p class="text-xs text-gray-500 mt-2">Rating diberikan pada {{ $booking->rating->created_at->format('d M Y') }}</p>
+                                </div>
+                            @else
+                                <!-- Show rating form -->
+                                <div class="rating-section p-4 rounded-lg" x-data="{ 
+                                    rating: 0, 
+                                    review: '',
+                                    hoveredStar: 0,
+                                    submitting: false,
+                                    submitRating() {
+                                        if (this.rating === 0) {
+                                            alert('Silakan pilih rating terlebih dahulu');
+                                            return;
+                                        }
+                                        
+                                        this.submitting = true;
+                                        
+                                        fetch('{{ route('rating.store') }}', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                            },
+                                            body: JSON.stringify({
+                                                peminjaman_id: {{ $booking->id }},
+                                                rating: this.rating,
+                                                review: this.review
+                                            })
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                alert('Rating berhasil disimpan!');
+                                                location.reload();
+                                            } else {
+                                                alert(data.message || 'Terjadi kesalahan');
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error('Error:', error);
+                                            alert('Terjadi kesalahan saat menyimpan rating');
+                                        })
+                                        .finally(() => {
+                                            this.submitting = false;
+                                        });
+                                    }
+                                }">
+                                    <h4 class="text-sm font-semibold text-blue-700 uppercase mb-3 flex items-center">
+                                        <i class="fas fa-star mr-2"></i>Berikan Rating
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mb-4">Bagaimana pengalaman Anda dengan rental ini?</p>
+                                    
+                                    <!-- Star Rating -->
+                                    <div class="flex items-center mb-4">
+                                        <span class="text-sm text-gray-700 mr-3">Rating:</span>
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <button type="button" 
+                                                    @click="rating = {{ $i }}"
+                                                    @mouseenter="hoveredStar = {{ $i }}"
+                                                    @mouseleave="hoveredStar = 0"
+                                                    class="rating-star focus:outline-none">
+                                                <i class="fas fa-star text-2xl transition-colors duration-150"
+                                                   :class="(hoveredStar >= {{ $i }} || rating >= {{ $i }}) ? 'text-yellow-400' : 'text-gray-300'"></i>
+                                            </button>
+                                        @endfor
+                                        <span class="ml-2 text-sm text-gray-600" x-text="rating > 0 ? rating + '/5' : 'Pilih rating'"></span>
+                                    </div>
+                                    
+                                    <!-- Review Textarea -->
+                                    <div class="mb-4">
+                                        <label class="block text-sm text-gray-700 mb-2">Review (Opsional):</label>
+                                        <textarea x-model="review" 
+                                                  rows="3" 
+                                                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                                                  placeholder="Tulis pengalaman Anda..."></textarea>
+                                    </div>
+                                    
+                                    <!-- Submit Button -->
+                                    <button type="button" 
+                                            @click="submitRating()"
+                                            :disabled="rating === 0 || submitting"
+                                            class="rating-submit-btn inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                                        <i class="fas fa-star mr-2"></i>
+                                        <span x-text="submitting ? 'Menyimpan...' : 'Kirim Rating'"></span>
+                                    </button>
+                                </div>
+                            @endif
+                        </div>
+                        @endif
 
                         <!-- Actions -->
                         <div class="mt-6 pt-6 border-t border-gray-200 flex justify-end">
