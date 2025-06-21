@@ -42,13 +42,31 @@
                         @endif
                           <!-- Role Badge -->
                         <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                            <span class="bg-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg
-                                {{ $user->role == 'admin' ? 'text-red-600' : 'text-blue-600' }}">
-                                @if($user->role == 'admin')
-                                    <i class="fas fa-crown mr-1"></i>Admin
-                                @else
-                                    <i class="fas fa-user mr-1"></i>User
-                                @endif
+                            @php
+                                $roleText = 'user';
+                                $roleColor = 'blue';
+                                
+                                if (isset($user->role_user_id)) {
+                                    if ($user->role_user_id == 3) {
+                                        $roleText = 'admin';
+                                        $roleColor = 'red';
+                                    } else {
+                                        $roleText = 'user';
+                                        $roleColor = 'blue';
+                                    }
+                                } elseif (isset($user->role)) {
+                                    if ($user->role === 'admin') {
+                                        $roleText = 'admin';
+                                        $roleColor = 'red';
+                                    } else {
+                                        $roleText = 'user';
+                                        $roleColor = 'blue';
+                                    }
+                                }
+                            @endphp
+                            <span class="bg-white text-{{ $roleColor }}-600 px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                <i class="fas fa-{{ $roleText == 'admin' ? 'crown' : 'user' }} mr-1"></i>
+                                {{ ucfirst($roleText) }}
                             </span>
                         </div>
                     </div>
@@ -184,13 +202,31 @@
                                     <i class="fas fa-user-tag mr-2 text-orange-500"></i>Role
                                 </label>
                                 <p class="text-lg text-gray-800 bg-gray-50 px-4 py-3 rounded-xl">
-                                    <span class="px-4 py-2 rounded-full text-sm font-semibold
-                                        {{ $user->role == 'admin' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800' }}">
-                                        @if($user->role == 'admin')
-                                            <i class="fas fa-crown mr-1"></i>Administrator
-                                        @else
-                                            <i class="fas fa-user mr-1"></i>User
-                                        @endif
+                                    @php
+                                        $roleText = 'user';
+                                        $roleBgColor = 'blue';
+                                        
+                                        if (isset($user->role_user_id)) {
+                                            if ($user->role_user_id == 3) {
+                                                $roleText = 'admin';
+                                                $roleBgColor = 'red';
+                                            } else {
+                                                $roleText = 'user';
+                                                $roleBgColor = 'blue';
+                                            }
+                                        } elseif (isset($user->role)) {
+                                            if ($user->role === 'admin') {
+                                                $roleText = 'admin';
+                                                $roleBgColor = 'red';
+                                            } else {
+                                                $roleText = 'user';
+                                                $roleBgColor = 'blue';
+                                            }
+                                        }
+                                    @endphp
+                                    <span class="bg-{{ $roleBgColor }}-100 text-{{ $roleBgColor }}-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                        <i class="fas fa-{{ $roleText == 'admin' ? 'crown' : 'user' }} mr-1"></i>
+                                        {{ ucfirst($roleText) }}
                                     </span>
                                 </p>
                             </div>
@@ -265,23 +301,17 @@
                                                     {{ $peminjaman->tanggal_selesai ? $peminjaman->tanggal_selesai : 'Tanggal selesai tidak tersedia' }}
                                                 </p>
                                             </div>
-                                        </div>
-                                        <div class="text-right">                                            @php
-                                                $statusClass = '';
-                                                $statusText = ucfirst($peminjaman->status ?? 'pending');
-                                                switch($peminjaman->status) {
-                                                    case 'selesai':
-                                                        $statusClass = 'bg-green-100 text-green-800';
-                                                        break;
-                                                    case 'berlangsung':
-                                                        $statusClass = 'bg-yellow-100 text-yellow-800';
-                                                        break;
-                                                    default:
-                                                        $statusClass = 'bg-blue-100 text-blue-800';
+                                        </div>                                        <div class="text-right">
+                                            @php
+                                                $statusClass = 'blue';
+                                                if ($peminjaman->status == 'selesai') {
+                                                    $statusClass = 'green';
+                                                } elseif ($peminjaman->status == 'berlangsung') {
+                                                    $statusClass = 'yellow';
                                                 }
                                             @endphp
-                                            <span class="{{ $statusClass }} px-3 py-1 rounded-full text-sm font-semibold">
-                                                {{ $statusText }}
+                                            <span class="bg-{{ $statusClass }}-100 text-{{ $statusClass }}-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                                {{ ucfirst($peminjaman->status ?? 'pending') }}
                                             </span>
                                             <p class="text-gray-600 text-sm mt-1">
                                                 {{ $peminjaman->created_at ? $peminjaman->created_at->format('d/m/Y') : 'Tanggal tidak tersedia' }}

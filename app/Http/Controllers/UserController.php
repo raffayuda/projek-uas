@@ -62,7 +62,7 @@ class UserController extends Controller
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-        $validated['role_user_id'] = $validated['role_user_id'] ?? 'user';
+        $validated['role'] = $validated['role'] ?? 'user';
 
         // Handle avatar upload
         if ($request->hasFile('avatar')) {
@@ -120,7 +120,7 @@ class UserController extends Controller
             unset($validated['password']);
         }
 
-        $validated['role_user_id'] = $validated['role_user_id'] ?? $user->role;
+        $validated['role'] = $validated['role'] ?? $user->role;
 
         // Handle avatar upload
         if ($request->hasFile('avatar')) {
