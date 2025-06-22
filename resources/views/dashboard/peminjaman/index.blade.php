@@ -184,15 +184,10 @@
                                            class="flex-1 bg-purple-50 hover:bg-purple-100 text-purple-600 text-center py-2 rounded-lg transition-colors duration-200 text-sm font-medium">
                                             Edit
                                         </a>
-                                        <form action="{{ route('peminjaman.destroy', $peminjaman) }}" method="POST" 
-                                              class="flex-1"
-                                              onsubmit="return confirm('Apakah Anda yakin ingin menghapus peminjaman ini?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="w-full bg-red-50 hover:bg-red-100 text-red-600 py-2 rounded-lg transition-colors duration-200 text-sm font-medium">
-                                                Hapus
-                                            </button>
-                                        </form>
+                                        <button onclick="openDeleteModal({{ $peminjaman->id }}, '{{ $peminjaman->nama_peminjam }}')" 
+                                                class="flex-1 bg-red-50 hover:bg-red-100 text-red-600 py-2 rounded-lg transition-colors duration-200 text-sm font-medium">
+                                            Hapus
+                                        </button>
                                     </div>
                                 </div>
                             @empty
@@ -284,18 +279,13 @@
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                                         </svg>
                                                     </a>
-                                                    <form action="{{ route('peminjaman.destroy', $peminjaman) }}" method="POST" 
-                                                          class="inline-block"
-                                                          onsubmit="return confirm('Apakah Anda yakin ingin menghapus peminjaman ini?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-lg transition-colors duration-200"
-                                                                title="Hapus">
-                                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                            </svg>
-                                                        </button>
-                                                    </form>
+                                                    <button onclick="openDeleteModal({{ $peminjaman->id }}, '{{ $peminjaman->nama_peminjam }}')" 
+                                                            class="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-lg transition-colors duration-200"
+                                                            title="Hapus">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                        </svg>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -328,11 +318,94 @@
                 </div>
             </div>
         </div>
-    </div>    @push('scripts')
+    </div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 transition-all duration-300 opacity-0">
+    <div class="bg-white rounded-2xl p-6 m-4 max-w-md w-full shadow-2xl transform transition-all duration-300 scale-95" id="deleteModalContent">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-center mb-4">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                <i class="fas fa-exclamation-triangle text-2xl text-red-600"></i>
+            </div>
+        </div>
+        
+        <!-- Modal Content -->
+        <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Hapus Peminjaman</h3>
+            <p class="text-gray-600">Apakah Anda yakin ingin menghapus peminjaman untuk <span id="deleteItemName" class="font-semibold"></span>?</p>
+            <p class="text-red-600 text-sm mt-2">Tindakan ini tidak dapat dibatalkan.</p>
+        </div>
+        
+        <!-- Modal Actions -->
+        <div class="flex space-x-3">
+            <button onclick="closeDeleteModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-3 px-4 rounded-xl font-medium transition-colors">
+                Batal
+            </button>
+            <form id="deleteForm" method="POST" class="flex-1">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white py-3 px-4 rounded-xl font-medium transition-colors">
+                    Hapus
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+    @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script>
+        // Delete Modal Functions
+        function openDeleteModal(id, name) {
+            document.getElementById('deleteItemName').textContent = name;
+            document.getElementById('deleteForm').action = '/peminjaman/' + id;
+            const modal = document.getElementById('deleteModal');
+            const modalContent = document.getElementById('deleteModalContent');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Trigger animation
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            const modalContent = document.getElementById('deleteModalContent');
+            
+            modal.classList.add('opacity-0');
+            modal.classList.remove('opacity-100');
+            modalContent.classList.add('scale-95');
+            modalContent.classList.remove('scale-100');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeDeleteModal();
+            }
+        });
+
         // Initialize date range picker with modern styling
         flatpickr("input[name='date_range']", {
             mode: "range",
@@ -347,7 +420,7 @@
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function() {
                 const submitBtn = this.querySelector('button[type="submit"]');
-                if (submitBtn) {
+                if (submitBtn && !submitBtn.id === 'deleteSubmitBtn') {
                     submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Processing...';
                     submitBtn.disabled = true;
                 }
@@ -355,12 +428,15 @@
         });
 
         // Auto-submit search form on input
-        document.querySelector('input[name="search"]').addEventListener('input', function() {
-            clearTimeout(this.searchTimeout);
-            this.searchTimeout = setTimeout(() => {
-                this.closest('form').submit();
-            }, 500);
-        });
+        const searchInput = document.querySelector('input[name="search"]');
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                clearTimeout(this.searchTimeout);
+                this.searchTimeout = setTimeout(() => {
+                    this.closest('form').submit();
+                }, 500);
+            });
+        }
 
         // Add smooth transitions
         document.addEventListener('DOMContentLoaded', function() {

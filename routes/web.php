@@ -53,6 +53,9 @@ Route::middleware(['auth'])->group(function () {
     // Location Routes
     Route::resource('lokasi', LocationController::class);
 
+    // Jenis Kendaraan Routes
+    Route::resource('jenis-kendaraan', App\Http\Controllers\JenisKendaraanController::class);
+
     // User Management Routes
     Route::resource('users', App\Http\Controllers\UserController::class);
 

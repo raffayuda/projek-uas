@@ -8,6 +8,7 @@ use App\Models\Armada;
 use App\Models\Pembayaran;
 use App\Models\User;
 use App\Models\Lokasi;
+use App\Models\JenisKendaraan;
 
 class SidebarComposer
 {
@@ -29,6 +30,7 @@ class SidebarComposer
         $pembayaranCount = Pembayaran::count();
         $lokasiCount = Lokasi::count();
         $armadaCount = $totalArmada;
+        $jenisKendaraanCount = JenisKendaraan::count();
 
         $view->with([
             'activePeminjamanCount' => $activePeminjamanCount,
@@ -38,7 +40,8 @@ class SidebarComposer
             'userCount' => $userCount,
             'pembayaranCount' => $pembayaranCount,
             'lokasiCount' => $lokasiCount,
-            'armadaCount' => $armadaCount
+            'armadaCount' => $armadaCount,
+            'jenisKendaraanCount' => $jenisKendaraanCount
         ]);
     }
 }
