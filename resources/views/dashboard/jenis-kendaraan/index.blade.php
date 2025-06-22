@@ -161,8 +161,8 @@
 </div>
 
 <!-- Delete Confirmation Modal -->
-<div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 transition-all duration-300 opacity-0">
-    <div class="bg-white rounded-2xl p-6 m-4 max-w-md w-full shadow-2xl transform transition-all duration-300 scale-95" id="deleteModalContent">
+<div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" x-data="{ show: false }" x-show="show" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+    <div class="bg-white rounded-2xl p-6 m-4 max-w-md w-full shadow-2xl" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95">
         <!-- Modal Header -->
         <div class="flex items-center justify-center mb-4">
             <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
@@ -197,46 +197,18 @@
 function openDeleteModal(id, name) {
     document.getElementById('deleteItemName').textContent = name;
     document.getElementById('deleteForm').action = '/jenis-kendaraan/' + id;
-    const modal = document.getElementById('deleteModal');
-    const modalContent = document.getElementById('deleteModalContent');
-    
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    
-    // Trigger animation
-    setTimeout(() => {
-        modal.classList.remove('opacity-0');
-        modal.classList.add('opacity-100');
-        modalContent.classList.remove('scale-95');
-        modalContent.classList.add('scale-100');
-    }, 10);
+    document.getElementById('deleteModal').classList.remove('hidden');
+    document.getElementById('deleteModal').classList.add('flex');
 }
 
 function closeDeleteModal() {
-    const modal = document.getElementById('deleteModal');
-    const modalContent = document.getElementById('deleteModalContent');
-    
-    modal.classList.add('opacity-0');
-    modal.classList.remove('opacity-100');
-    modalContent.classList.add('scale-95');
-    modalContent.classList.remove('scale-100');
-    
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }, 300);
+    document.getElementById('deleteModal').classList.add('hidden');
+    document.getElementById('deleteModal').classList.remove('flex');
 }
 
 // Close modal when clicking outside
 document.getElementById('deleteModal').addEventListener('click', function(e) {
     if (e.target === this) {
-        closeDeleteModal();
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
         closeDeleteModal();
     }
 });
