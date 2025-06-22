@@ -108,17 +108,6 @@
                 </div>
              </a>
 
-             <a href="/laporan/detail" 
-                class="flex items-center px-4 py-2 text-white rounded-lg backdrop-blur-sm border transition-all duration-200 {{ request()->is('laporan/detail*') ? 'bg-white/20 border-white/20' : 'hover:bg-white/10 border-transparent hover:border-white/10' }} group">
-                <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-sm">
-                   <i class="fas fa-table text-xs text-white"></i>
-                </div>
-                <div>
-                   <p class="font-medium text-sm">Detail Reports</p>
-                   <p class="text-xs text-blue-200">Filtered Data View</p>
-                </div>
-             </a>
-
              <a href="/laporan/export-pdf" 
                 class="flex items-center px-4 py-2 text-white rounded-lg backdrop-blur-sm border transition-all duration-200 hover:bg-white/10 border-transparent hover:border-white/10 group">
                 <div class="w-8 h-8 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center mr-3 shadow-sm">

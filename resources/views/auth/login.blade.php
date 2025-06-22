@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarRental Pro - Masuk</title>
+    <title>drivEasy - Masuk</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -77,7 +77,7 @@
                     <div class="mb-8">
                         <i class="fas fa-car text-8xl text-white floating"></i>
                     </div>
-                    <h1 class="text-4xl font-bold text-white mb-4">CarRental Pro</h1>
+                    <h1 class="text-4xl font-bold text-white mb-4">drivEasy</h1>
                     <p class="text-xl text-white/90 mb-8">Pengalaman Sewa Mobil Premium Anda</p>
                     <div class="flex justify-center space-x-4 text-white/80">
                         <div class="text-center">

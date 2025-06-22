@@ -516,7 +516,7 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/2560px-Toyota_carlogo.svg.png" alt="Toyota" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                         <div class="flex-shrink-0 w-48 h-24 bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 transform hover:-translate-y-1 p-4 flex items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda-logo.jpg/2560px-Honda-logo.jpg" alt="Honda" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
+                            <img src="{{ asset('images/honda.png') }}" alt="Honda" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                         <div class="flex-shrink-0 w-48 h-24 bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 transform hover:-translate-y-1 p-4 flex items-center justify-center">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/2048px-BMW.svg.png" alt="BMW" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
@@ -528,14 +528,14 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/2560px-Audi-Logo_2016.svg.png" alt="Audi" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                         <div class="flex-shrink-0 w-48 h-24 bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 transform hover:-translate-y-1 p-4 flex items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Lexus_logo.svg/2560px-Lexus_logo.svg.png" alt="Lexus" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
+                            <img src="{{ asset('images/lexus.png') }}" alt="Lexus" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                         <!-- Duplicate Set for Seamless Loop -->
                         <div class="flex-shrink-0 w-48 h-24 bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 transform hover:-translate-y-1 p-4 flex items-center justify-center">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/2560px-Toyota_carlogo.svg.png" alt="Toyota" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                         <div class="flex-shrink-0 w-48 h-24 bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 transform hover:-translate-y-1 p-4 flex items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda-logo.jpg/2560px-Honda-logo.jpg" alt="Honda" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
+                            <img src="{{ asset('images/honda.png') }}" alt="Honda" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                         <div class="flex-shrink-0 w-48 h-24 bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 transform hover:-translate-y-1 p-4 flex items-center justify-center">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/2048px-BMW.svg.png" alt="BMW" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
@@ -547,7 +547,7 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/2560px-Audi-Logo_2016.svg.png" alt="Audi" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                         <div class="flex-shrink-0 w-48 h-24 bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 transform hover:-translate-y-1 p-4 flex items-center justify-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Lexus_logo.svg/2560px-Lexus_logo.svg.png" alt="Lexus" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
+                            <img src="{{ asset('images/lexus.png') }}" alt="Lexus" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition duration-300">
                         </div>
                     </div>
                 </div>
